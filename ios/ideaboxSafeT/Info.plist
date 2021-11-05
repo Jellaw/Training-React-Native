@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>ideaboxSafeT</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CodePushDeploymentKey</key>
+	<string>g4GZ13u5ZFFGGDeTSdV4JLeo6wbdn4wLwRbq3</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App needs use your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFUIDisplay-Regular.ttf</string>
+		<string>Aleo-Bold.ttf</string>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Fontisto.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>FontAwesome5_Pro_Light.otf</string>
+		<string>FontAwesome5_Pro_Regular.otf</string>
+		<string>FontAwesome5_Pro_Solid.otf</string>
+		<string>FontAwesome5ProBrands-Regular.otf</string>
+		<string>FontAwesome5ProDuotone-Solid.otf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>remixicon.ttf</string>
+		<string>SFUIDisplay-Black.otf</string>
+		<string>SFUIDisplay-Bold.otf</string>
+		<string>SFUIDisplay-Heavy.otf</string>
+		<string>SFUIDisplay-Light.otf</string>
+		<string>SFUIDisplay-Medium.otf</string>
+		<string>SFUIDisplay-Regular.otf</string>
+		<string>SFUIDisplay-Semibold.otf</string>
+		<string>SFUIDisplay-Thin.otf</string>
+		<string>SFUIDisplay-Ultralight.otf</string>
+		<string>SFUIText-Bold.otf</string>
+		<string>SFUIText-BoldItalic.otf</string>
+		<string>SFUIText-Heavy.otf</string>
+		<string>SFUIText-HeavyItalic.otf</string>
+		<string>SFUIText-Light.otf</string>
+		<string>SFUIText-LightItalic.otf</string>
+		<string>SFUIText-Medium.otf</string>
+		<string>SFUIText-MediumItalic.otf</string>
+		<string>SFUIText-Regular.otf</string>
+		<string>SFUIText-RegularItalic.otf</string>
+		<string>SFUIText-Semibold.otf</string>
+		<string>SFUIText-SemiboldItalic.otf</string>
+		<string>Font Awesome 6 Brands-Regular-400.otf</string>
+		<string>Font Awesome 6 Duotone-Solid-900.otf</string>
+		<string>Font Awesome 6 Pro-Light-300.otf</string>
+		<string>Font Awesome 6 Pro-Regular-400.otf</string>
+		<string>Font Awesome 6 Pro-Solid-900.otf</string>
+		<string>Font Awesome 6 Pro-Thin-100.otf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

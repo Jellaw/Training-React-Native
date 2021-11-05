@@ -1,0 +1,56 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+# definitions:
+#   services:
+#     redisdb:
+#       image: redis
+#     mysqldb:
+#       image: mysql:5.7
+#       variables:
+#         MYSQL_DATABASE: 'safet'
+#         MYSQL_ROOT_PASSWORD: 'passdequ@'
+
+pipelines:
+  # branches:
+  #   staging:
+  #     - step:
+  #         name: Build Image and Push to Container Registry Gitlab
+  #         services:
+  #           - docker
+  #         script:
+  #           - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  #           - docker build -t ideabox/safe-t-device-ui-api-node.js:staging .
+  #           - docker tag ideabox/safe-t-device-ui-api-node.js:staging registry.gitlab.com/wioutsource/ideabox/safe-t:api-staging
+  #           - docker push registry.gitlab.com/wioutsource/ideabox/safe-t:api-staging
+  #     - step:
+  #         name: Use ansible to deploy
+  #         image: ideaboxrain/ideabox-ansible:latest
+  #         script:
+  #           - cd /work/ansible
+  #           - ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory/staging playbook.yml -e "gitlab_registry_user=$CI_REGISTRY_USER gitlab_registry_password=$CI_REGISTRY_PASSWORD"
+  default:
+    - parallel:
+        # - step:
+        #     name: Build and Test
+        #     image: node:12
+        #     services:
+        #       - mysqldb
+        #       - redisdb
+        #     caches:
+        #       - node
+        #     script:
+        #       - npm install
+        #       - npm run migrate-up-dev
+        #       - npm run seed-dev
+        #       - npm run test.ci
+        - step:
+            name: Code linting
+            image: node:12
+            script:
+              - npm install
+              - npm run lint
+            caches:
+              - node

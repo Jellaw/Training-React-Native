@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <style>
+      .node-none {fill: none; stroke:#E9EAF0;}
+      .node-alert {fill: #F5374E;}
+      .node-active {fill: #68AF2C;}
+      .node-check {fill: #34449D;}
+      .node-pause {fill: #FFC700;}
+      .here-alert {stroke:#F5374E;}
+      .here-active {stroke:#68AF2C;}
+      .here-check {stroke:#34449D;}
+      .here-pause {stroke:#FFC700;}
+    </style>
+  </defs>
+
+  <g id="scaffolding_img" transform="translate(4345 4221)">
+    <path id="Union_171" data-name="Union 171" d="M2,40V22.83a3,3,0,0,1,0-5.659V3H0V1H2V0H4V1H6V3H4V17.171A3,3,0,0,1,4,22.83V40Z" transform="translate(-4328 -4221)" fill="#e9eaf0"/>
+    <path id="Union_172" data-name="Union 172" d="M0,32V31H40v1Zm0-5V26H40v1ZM0,1V0H40V1Z" transform="translate(-4345 -4221)" fill="#b4b8c9"/>
+    <rect id="Rectangle_2198" data-name="Rectangle 2198" width="40" height="4" transform="translate(-4345 -4185)" fill="#818389"/>
+  </g>
+
+  <!-- Node Indicator -->
+  <circle id="node" data-name="" class="node-alert" cx="20" cy="20" r="5" width="10" height="10"/>
+
+  <!-- Circle Animation -->
+  <circle id="here" data-name="" class="here-alert" cx="20" cy="20" fill="none" r="10" stroke-width="4">
+    <animate attributeName="r" from="0" to="17" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" from="1" to="0" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Square Animation -->
+  <!-- <rect x="10%" y="10%" width="80%" height="80%" fill="none" stroke="black">
+    <animate attributeName="stroke-width" attributeType="XML" dur="4s" repeatCount="indefinite" values="0;20;0" keyTimes="0;0.5;1" />
+  </rect> -->
+
+  <rect id="bay_link" data-name="" width="40" height="40" fill="rgba(255,255,255,0)" onclick="alert('You have clicked the circle.')"/>
+
+</svg>

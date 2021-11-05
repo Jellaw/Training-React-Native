@@ -1,0 +1,95 @@
+export const BLOCK_STATUS = {
+  ACTIVE: 'Active',
+  INACTIVE: 'Inactive',
+};
+
+export const STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+export const USER_GENDER = {
+  MALE: 'Male',
+  FEMALE: 'Female',
+};
+
+export const USER_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+export const PAGE_SIZE_TYPE = {
+  PC: 'PC',
+  LAPTOP: 'LAPTOP',
+  TABLET: 'TABLET',
+  MOBILE: 'MOBILE',
+};
+
+// constants of system
+export const PROJECT_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+export const COMPANY_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+export const NODE_STATUS = {
+  ALERT: 0,
+  CHECK: 2,
+  PAUSE: 3,
+  ACTIVE: 1,
+};
+
+export const DEVICE_LOCATION_TREE_SIDE_NAME = {
+  LEFT: 'LEFT',
+  RIGHT: 'RIGHT',
+  BACK: 'BACK',
+  WALL: 'WALL',
+};
+
+export const DEVICE_LOCATION_TREE_TYPE = {
+  BUILDING: 'BUILDING',
+  WALL: 'WALL',
+  LEVEL: 'LEVEL',
+  BAY: 'BAY',
+  SIDE: 'SIDE',
+};
+
+export const DEVICE_LOCATION_TREE_CHILDREN_TYPE = {
+  BUILDING: 'WALL',
+  WALL: 'LEVEL',
+  LEVEL: 'BAY',
+  BAY: 'SIDE',
+  SIDE: '',
+};
+
+export const NODE_ACTIONS = {
+  CHECKED_RESUME_NOW: 'CHECKED_RESUME_NOW',
+  SCHEDULE_OUTSTAGE_PAUSE: 'SCHEDULE_OUTSTAGE_PAUSE',
+  PAUSE_TRACKING: 'PAUSE_TRACKING',
+  RESUME_TRACKING_UNPAUSE: 'RESUME_TRACKING_UNPAUSE',
+};
+
+export const NODE_HISTORY_TYPE = {
+  ALERT: 'ALERT',
+  CHECK: 'CHECK',
+  PAUSE: 'PAUSE',
+  RESUME: 'RESUME',
+  SCHEDULED_PAUSE: 'SCHEDULED_PAUSE',
+  SCHEDULED_RESUME: 'SCHEDULED_RESUME',
+};
+
+export const TTN_APPLICATION_STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+};
+
+export const USER_GROUP_TYPE = {
+  ADMIN: 'ADMIN',
+  PROJ_ADMIN: 'PROJ_ADMIN',
+  PROJ_MANAGER: 'PROJ_MANAGER',
+  AUDITOR: 'AUDITOR',
+};

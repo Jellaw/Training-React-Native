@@ -1,0 +1,928 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* ideaboxSafeTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ideaboxSafeTTests.m */; };
+		05B6C0C0AFFB4F78A8722EE8 /* SFUIText-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 457A38EC878242468502FFD4 /* SFUIText-Heavy.otf */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1EE939763BEA4680A35A7906 /* SFUIText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 72E196A04B104E81B0762AAE /* SFUIText-RegularItalic.otf */; };
+		27956A7331B34C8493EC9A2B /* Font Awesome 6 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17CCEE35617441B4BDA94720 /* Font Awesome 6 Pro-Solid-900.otf */; };
+		2E773670700E4322A48A3A0D /* SFUIDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C4A58D4EF3F8437C8959ADC3 /* SFUIDisplay-Thin.otf */; };
+		3D9340CB9AB54023961FAC88 /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9227AA5C4846CDB5EE4B99 /* SFUIDisplay-Medium.otf */; };
+		4AC48F9CADE64CE48D0742B1 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83EE2AC9591F474292CD441E /* Poppins-SemiBold.ttf */; };
+		4B2B8FE68A3942D2BE868FCC /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED5C6770AB774ED0938E670F /* Poppins-Regular.ttf */; };
+		4E13974C853F4FE09B5567A6 /* FontAwesome5_Pro_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F89C158D2D264BA283395B29 /* FontAwesome5_Pro_Regular.otf */; };
+		61457F1649564462873C60DE /* SFUIDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 35C98299D286494D8F70A0B7 /* SFUIDisplay-Black.otf */; };
+		6932EAEF39D4458698332FC2 /* Font Awesome 6 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA683E2D6B2A4E8E8ECA53A6 /* Font Awesome 6 Brands-Regular-400.otf */; };
+		728BA52712BD4807BD7AEB50 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 805C2B47DFBE4D18BE970A47 /* Poppins-Bold.ttf */; };
+		781106673B01463192332CFB /* SFUIText-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD636F885D9467BA8308E87 /* SFUIText-LightItalic.otf */; };
+		78E123845052F1E8F622C33F /* libPods-ideaboxSafeT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E168113212808A48474FCD22 /* libPods-ideaboxSafeT.a */; };
+		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		89FFEA40F7364316A4E270BE /* SFUIText-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 37E13435E7704360A2D55994 /* SFUIText-SemiboldItalic.otf */; };
+		8C8CBB4C57EA42129DB77BC6 /* SFUIText-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 510B01A6070C489E8059C13C /* SFUIText-Medium.otf */; };
+		900EB888EB124F60B12DDB4D /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EB505E47216D492A9D149A0C /* SFUIDisplay-Light.otf */; };
+		99BBC04BE9A04E3AA4471B63 /* SFUIDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14E27B86952B4C51AEFE366A /* SFUIDisplay-Bold.otf */; };
+		A32825A001424C4F960B0584 /* FontAwesome5_Pro_Solid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9988DE4007874EBD9FC5972D /* FontAwesome5_Pro_Solid.otf */; };
+		A9DE5F445ACD4FCD8D0D7E22 /* FontAwesome5ProBrands-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F56737C58B444CED98D8F7CF /* FontAwesome5ProBrands-Regular.otf */; };
+		AA791694B9E74618AD3ABA30 /* SFUIText-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC73C1AB61436CB6828B14 /* SFUIText-Regular.otf */; };
+		AD0DEADEB60747E189B0EB0C /* SFUIText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09E8965548544830A6DAA827 /* SFUIText-Bold.otf */; };
+		BED7C2728D124FBFA06FD1C2 /* SFUIText-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CFAC8FF8582742269F4F32D3 /* SFUIText-HeavyItalic.otf */; };
+		C69EF81D9D874D15987C961F /* FontAwesome5ProDuotone-Solid.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC05C35DFA46B88C29AF67 /* FontAwesome5ProDuotone-Solid.otf */; };
+		C7C917B882DA48D7ABE33333 /* remixicon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AD77E3A17F0406ABC7A0744 /* remixicon.ttf */; };
+		CC8A824FCB3B4002BEBAADFC /* Font Awesome 6 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 214F99EF061D46C682706E57 /* Font Awesome 6 Pro-Regular-400.otf */; };
+		CDA2596746E2413980B2B1F7 /* SFUIText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4680EC41F9E6435689819168 /* SFUIText-Light.otf */; };
+		D13E7495BF3B4FD9970D020C /* SFUIText-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBFF8AC46D184B618B2FD294 /* SFUIText-BoldItalic.otf */; };
+		D36A6EDE268D71F20052F2F5 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6ED7268D71F20052F2F5 /* SFUIDisplay-Regular.ttf */; };
+		D36A6EDF268D71F20052F2F5 /* Aleo-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6ED8268D71F20052F2F5 /* Aleo-BoldItalic.ttf */; };
+		D36A6EE0268D71F20052F2F5 /* Aleo-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6ED9268D71F20052F2F5 /* Aleo-LightItalic.ttf */; };
+		D36A6EE1268D71F20052F2F5 /* Aleo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6EDA268D71F20052F2F5 /* Aleo-Regular.ttf */; };
+		D36A6EE2268D71F20052F2F5 /* Aleo-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6EDB268D71F20052F2F5 /* Aleo-Italic.ttf */; };
+		D36A6EE3268D71F20052F2F5 /* Aleo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6EDC268D71F20052F2F5 /* Aleo-Bold.ttf */; };
+		D36A6EE4268D71F20052F2F5 /* Aleo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D36A6EDD268D71F20052F2F5 /* Aleo-Light.ttf */; };
+		D59A928FF7914A5DBB8219A4 /* FontAwesome5_Pro_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7090013A5FAD44AC9F8954CE /* FontAwesome5_Pro_Light.otf */; };
+		DA6E66E2C5B647C7926A4EB3 /* SFUIDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8BC405F0DD44D1F8AD02243 /* SFUIDisplay-Ultralight.otf */; };
+		DDFD3600040B4BD9A5E92A6A /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00903184F1BD4486BFF1C59D /* Poppins-Light.ttf */; };
+		E782D1899E85418DAA41483F /* SFUIText-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A6CE715B43C411B95586742 /* SFUIText-MediumItalic.otf */; };
+		E7B1E6A9B8344410B10C2DF5 /* Font Awesome 6 Pro-Light-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 25D3CB5C694E45689A784AD3 /* Font Awesome 6 Pro-Light-300.otf */; };
+		E8B4DCFFB512D7F41A091F94 /* libPods-ideaboxSafeT-ideaboxSafeTTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55896CF683791EF59077F0B1 /* libPods-ideaboxSafeT-ideaboxSafeTTests.a */; };
+		E958CA662D6748D8B2F78D80 /* SFUIDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0F1CDD19B76F4CC3B6768C7D /* SFUIDisplay-Heavy.otf */; };
+		EA3479E42C744E9794FF297A /* SFUIText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A1241C25E6F41A69D373E29 /* SFUIText-Semibold.otf */; };
+		FA02A670B8764BB388AF2279 /* Font Awesome 6 Pro-Thin-100.otf in Resources */ = {isa = PBXBuildFile; fileRef = 22B5AAA4A1B0493F82A1F2B1 /* Font Awesome 6 Pro-Thin-100.otf */; };
+		FC17DA9D5C254E7FB73B6923 /* Font Awesome 6 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = B22EB6AFC6F9444FB0D3C635 /* Font Awesome 6 Duotone-Solid-900.otf */; };
+		FCFA0CDD838D44DB8E012C70 /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 823E2876133147BEB3524A12 /* SFUIDisplay-Regular.otf */; };
+		FD0E48AD7E33407E8913340C /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E6BF25880CF547E6B77F82AE /* SFUIDisplay-Semibold.otf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = ideaboxSafeT;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00903184F1BD4486BFF1C59D /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../src/assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* ideaboxSafeTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ideaboxSafeTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* ideaboxSafeTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ideaboxSafeTTests.m; sourceTree = "<group>"; };
+		09E8965548544830A6DAA827 /* SFUIText-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Bold.otf"; path = "../src/assets/fonts/SFUIText-Bold.otf"; sourceTree = "<group>"; };
+		0E6CD15455B2442497D75726 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		0F1CDD19B76F4CC3B6768C7D /* SFUIDisplay-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Heavy.otf"; path = "../src/assets/fonts/SFUIDisplay-Heavy.otf"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* ideaboxSafeT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ideaboxSafeT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ideaboxSafeT/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ideaboxSafeT/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ideaboxSafeT/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ideaboxSafeT/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ideaboxSafeT/main.m; sourceTree = "<group>"; };
+		14E27B86952B4C51AEFE366A /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Bold.otf"; path = "../src/assets/fonts/SFUIDisplay-Bold.otf"; sourceTree = "<group>"; };
+		17CCEE35617441B4BDA94720 /* Font Awesome 6 Pro-Solid-900.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Pro-Solid-900.otf"; path = "../src/assets/fonts/Font Awesome 6 Pro-Solid-900.otf"; sourceTree = "<group>"; };
+		1BEC05C35DFA46B88C29AF67 /* FontAwesome5ProDuotone-Solid.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FontAwesome5ProDuotone-Solid.otf"; path = "../src/assets/fonts/FontAwesome5ProDuotone-Solid.otf"; sourceTree = "<group>"; };
+		2011A56AB0994F05900CE67F /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		214F99EF061D46C682706E57 /* Font Awesome 6 Pro-Regular-400.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Pro-Regular-400.otf"; path = "../src/assets/fonts/Font Awesome 6 Pro-Regular-400.otf"; sourceTree = "<group>"; };
+		22B5AAA4A1B0493F82A1F2B1 /* Font Awesome 6 Pro-Thin-100.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Pro-Thin-100.otf"; path = "../src/assets/fonts/Font Awesome 6 Pro-Thin-100.otf"; sourceTree = "<group>"; };
+		25D3CB5C694E45689A784AD3 /* Font Awesome 6 Pro-Light-300.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Pro-Light-300.otf"; path = "../src/assets/fonts/Font Awesome 6 Pro-Light-300.otf"; sourceTree = "<group>"; };
+		2B61A0BD764EB02DF0E6B6E2 /* Pods-ideaboxSafeT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaboxSafeT.debug.xcconfig"; path = "Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT.debug.xcconfig"; sourceTree = "<group>"; };
+		30AB83954B0CEF5AF9AAD016 /* Pods-ideaboxSafeT-ideaboxSafeTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaboxSafeT-ideaboxSafeTTests.debug.xcconfig"; path = "Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		35C98299D286494D8F70A0B7 /* SFUIDisplay-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Black.otf"; path = "../src/assets/fonts/SFUIDisplay-Black.otf"; sourceTree = "<group>"; };
+		37E13435E7704360A2D55994 /* SFUIText-SemiboldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-SemiboldItalic.otf"; path = "../src/assets/fonts/SFUIText-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		457A38EC878242468502FFD4 /* SFUIText-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Heavy.otf"; path = "../src/assets/fonts/SFUIText-Heavy.otf"; sourceTree = "<group>"; };
+		4680EC41F9E6435689819168 /* SFUIText-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Light.otf"; path = "../src/assets/fonts/SFUIText-Light.otf"; sourceTree = "<group>"; };
+		4A6CE715B43C411B95586742 /* SFUIText-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-MediumItalic.otf"; path = "../src/assets/fonts/SFUIText-MediumItalic.otf"; sourceTree = "<group>"; };
+		4ACC73C1AB61436CB6828B14 /* SFUIText-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Regular.otf"; path = "../src/assets/fonts/SFUIText-Regular.otf"; sourceTree = "<group>"; };
+		510B01A6070C489E8059C13C /* SFUIText-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Medium.otf"; path = "../src/assets/fonts/SFUIText-Medium.otf"; sourceTree = "<group>"; };
+		55896CF683791EF59077F0B1 /* libPods-ideaboxSafeT-ideaboxSafeTTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ideaboxSafeT-ideaboxSafeTTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		58711B8A2AD44CC7B77FD166 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		5A9056D3AD444972B2344FFA /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		65F7B1E68D0447B282BDD6E4 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		68A8CDB5239F40A3876010E0 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		6A1241C25E6F41A69D373E29 /* SFUIText-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-Semibold.otf"; path = "../src/assets/fonts/SFUIText-Semibold.otf"; sourceTree = "<group>"; };
+		6A4087360FDE45ED41CD94B9 /* Pods-ideaboxSafeT-ideaboxSafeTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaboxSafeT-ideaboxSafeTTests.release.xcconfig"; path = "Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C9227AA5C4846CDB5EE4B99 /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Medium.otf"; path = "../src/assets/fonts/SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
+		6CD636F885D9467BA8308E87 /* SFUIText-LightItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-LightItalic.otf"; path = "../src/assets/fonts/SFUIText-LightItalic.otf"; sourceTree = "<group>"; };
+		7090013A5FAD44AC9F8954CE /* FontAwesome5_Pro_Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Light.otf; path = ../src/assets/fonts/FontAwesome5_Pro_Light.otf; sourceTree = "<group>"; };
+		72E196A04B104E81B0762AAE /* SFUIText-RegularItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-RegularItalic.otf"; path = "../src/assets/fonts/SFUIText-RegularItalic.otf"; sourceTree = "<group>"; };
+		765558962DF0439ABA5BB157 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		7AD77E3A17F0406ABC7A0744 /* remixicon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = remixicon.ttf; path = ../src/assets/fonts/remixicon.ttf; sourceTree = "<group>"; };
+		805C2B47DFBE4D18BE970A47 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ideaboxSafeT/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		823E2876133147BEB3524A12 /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Regular.otf"; path = "../src/assets/fonts/SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
+		83EE2AC9591F474292CD441E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		83F97FA6C5854223BDE2CC26 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		85A63CDB72E74C27B36DF902 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		89645AAC3E09438C9305CF2C /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		8C65186B715E4F91ACD44685 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		9988DE4007874EBD9FC5972D /* FontAwesome5_Pro_Solid.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Solid.otf; path = ../src/assets/fonts/FontAwesome5_Pro_Solid.otf; sourceTree = "<group>"; };
+		A7503820AD8953BE17E695CB /* Pods-ideaboxSafeT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ideaboxSafeT.release.xcconfig"; path = "Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT.release.xcconfig"; sourceTree = "<group>"; };
+		AA683E2D6B2A4E8E8ECA53A6 /* Font Awesome 6 Brands-Regular-400.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Brands-Regular-400.otf"; path = "../src/assets/fonts/Font Awesome 6 Brands-Regular-400.otf"; sourceTree = "<group>"; };
+		B22EB6AFC6F9444FB0D3C635 /* Font Awesome 6 Duotone-Solid-900.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Font Awesome 6 Duotone-Solid-900.otf"; path = "../src/assets/fonts/Font Awesome 6 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
+		C4A58D4EF3F8437C8959ADC3 /* SFUIDisplay-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Thin.otf"; path = "../src/assets/fonts/SFUIDisplay-Thin.otf"; sourceTree = "<group>"; };
+		CFAC8FF8582742269F4F32D3 /* SFUIText-HeavyItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-HeavyItalic.otf"; path = "../src/assets/fonts/SFUIText-HeavyItalic.otf"; sourceTree = "<group>"; };
+		D36A6ED7268D71F20052F2F5 /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIDisplay-Regular.ttf"; path = "../src/assets/fonts/SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		D36A6ED8268D71F20052F2F5 /* Aleo-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-BoldItalic.ttf"; path = "../src/assets/fonts/Aleo-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D36A6ED9268D71F20052F2F5 /* Aleo-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-LightItalic.ttf"; path = "../src/assets/fonts/Aleo-LightItalic.ttf"; sourceTree = "<group>"; };
+		D36A6EDA268D71F20052F2F5 /* Aleo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Regular.ttf"; path = "../src/assets/fonts/Aleo-Regular.ttf"; sourceTree = "<group>"; };
+		D36A6EDB268D71F20052F2F5 /* Aleo-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Italic.ttf"; path = "../src/assets/fonts/Aleo-Italic.ttf"; sourceTree = "<group>"; };
+		D36A6EDC268D71F20052F2F5 /* Aleo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Bold.ttf"; path = "../src/assets/fonts/Aleo-Bold.ttf"; sourceTree = "<group>"; };
+		D36A6EDD268D71F20052F2F5 /* Aleo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Light.ttf"; path = "../src/assets/fonts/Aleo-Light.ttf"; sourceTree = "<group>"; };
+		D3A4287D2B3645CDA0BE04CE /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		DBFF8AC46D184B618B2FD294 /* SFUIText-BoldItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIText-BoldItalic.otf"; path = "../src/assets/fonts/SFUIText-BoldItalic.otf"; sourceTree = "<group>"; };
+		DF3492786ACB42D2A9DC347F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		E0A85B342A28441D88872FB4 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		E168113212808A48474FCD22 /* libPods-ideaboxSafeT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ideaboxSafeT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E556EE8CE4F4498C9FE00155 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		E6BF25880CF547E6B77F82AE /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.otf"; path = "../src/assets/fonts/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		E8BC405F0DD44D1F8AD02243 /* SFUIDisplay-Ultralight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Ultralight.otf"; path = "../src/assets/fonts/SFUIDisplay-Ultralight.otf"; sourceTree = "<group>"; };
+		EB505E47216D492A9D149A0C /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.otf"; path = "../src/assets/fonts/SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED5C6770AB774ED0938E670F /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		F3927C0D266C87980075BEBB /* Aleo-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Italic.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-Italic.ttf"; sourceTree = "<group>"; };
+		F3927C0E266C87980075BEBB /* Aleo-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-BoldItalic.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-BoldItalic.ttf"; sourceTree = "<group>"; };
+		F3927C0F266C87980075BEBB /* Aleo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Bold.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-Bold.ttf"; sourceTree = "<group>"; };
+		F3927C10266C87980075BEBB /* Aleo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Light.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-Light.ttf"; sourceTree = "<group>"; };
+		F3927C11266C87990075BEBB /* Aleo-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-LightItalic.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-LightItalic.ttf"; sourceTree = "<group>"; };
+		F3927C12266C87990075BEBB /* Aleo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Aleo-Regular.ttf"; path = "../../../../../../../../../../Users/charliebean/Downloads/Aleo/Aleo-Regular.ttf"; sourceTree = "<group>"; };
+		F3927C19266C8C450075BEBB /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		F4BA1981EB3F4973929E8B5C /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		F56737C58B444CED98D8F7CF /* FontAwesome5ProBrands-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FontAwesome5ProBrands-Regular.otf"; path = "../src/assets/fonts/FontAwesome5ProBrands-Regular.otf"; sourceTree = "<group>"; };
+		F89C158D2D264BA283395B29 /* FontAwesome5_Pro_Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Pro_Regular.otf; path = ../src/assets/fonts/FontAwesome5_Pro_Regular.otf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8B4DCFFB512D7F41A091F94 /* libPods-ideaboxSafeT-ideaboxSafeTTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78E123845052F1E8F622C33F /* libPods-ideaboxSafeT.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* ideaboxSafeTTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* ideaboxSafeTTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = ideaboxSafeTTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* ideaboxSafeT */ = {
+			isa = PBXGroup;
+			children = (
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				13B07FB71A68108700A75B9A /* main.m */,
+			);
+			name = ideaboxSafeT;
+			sourceTree = "<group>";
+		};
+		2C82AE912090C5E65C426B86 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B61A0BD764EB02DF0E6B6E2 /* Pods-ideaboxSafeT.debug.xcconfig */,
+				A7503820AD8953BE17E695CB /* Pods-ideaboxSafeT.release.xcconfig */,
+				30AB83954B0CEF5AF9AAD016 /* Pods-ideaboxSafeT-ideaboxSafeTTests.debug.xcconfig */,
+				6A4087360FDE45ED41CD94B9 /* Pods-ideaboxSafeT-ideaboxSafeTTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				E168113212808A48474FCD22 /* libPods-ideaboxSafeT.a */,
+				55896CF683791EF59077F0B1 /* libPods-ideaboxSafeT-ideaboxSafeTTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77B6E7BAE2764EAE8B8DE28B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3927C19266C8C450075BEBB /* SFUIDisplay-Regular.ttf */,
+				F3927C0F266C87980075BEBB /* Aleo-Bold.ttf */,
+				F3927C0E266C87980075BEBB /* Aleo-BoldItalic.ttf */,
+				F3927C0D266C87980075BEBB /* Aleo-Italic.ttf */,
+				F3927C10266C87980075BEBB /* Aleo-Light.ttf */,
+				F3927C11266C87990075BEBB /* Aleo-LightItalic.ttf */,
+				F3927C12266C87990075BEBB /* Aleo-Regular.ttf */,
+				8C65186B715E4F91ACD44685 /* AntDesign.ttf */,
+				E0A85B342A28441D88872FB4 /* Entypo.ttf */,
+				83F97FA6C5854223BDE2CC26 /* EvilIcons.ttf */,
+				68A8CDB5239F40A3876010E0 /* Feather.ttf */,
+				5A9056D3AD444972B2344FFA /* FontAwesome.ttf */,
+				765558962DF0439ABA5BB157 /* FontAwesome5_Brands.ttf */,
+				58711B8A2AD44CC7B77FD166 /* FontAwesome5_Regular.ttf */,
+				85A63CDB72E74C27B36DF902 /* FontAwesome5_Solid.ttf */,
+				89645AAC3E09438C9305CF2C /* Fontisto.ttf */,
+				DF3492786ACB42D2A9DC347F /* Foundation.ttf */,
+				0E6CD15455B2442497D75726 /* Ionicons.ttf */,
+				D3A4287D2B3645CDA0BE04CE /* MaterialCommunityIcons.ttf */,
+				2011A56AB0994F05900CE67F /* MaterialIcons.ttf */,
+				E556EE8CE4F4498C9FE00155 /* Octicons.ttf */,
+				F4BA1981EB3F4973929E8B5C /* SimpleLineIcons.ttf */,
+				65F7B1E68D0447B282BDD6E4 /* Zocial.ttf */,
+				7090013A5FAD44AC9F8954CE /* FontAwesome5_Pro_Light.otf */,
+				F89C158D2D264BA283395B29 /* FontAwesome5_Pro_Regular.otf */,
+				9988DE4007874EBD9FC5972D /* FontAwesome5_Pro_Solid.otf */,
+				F56737C58B444CED98D8F7CF /* FontAwesome5ProBrands-Regular.otf */,
+				1BEC05C35DFA46B88C29AF67 /* FontAwesome5ProDuotone-Solid.otf */,
+				805C2B47DFBE4D18BE970A47 /* Poppins-Bold.ttf */,
+				00903184F1BD4486BFF1C59D /* Poppins-Light.ttf */,
+				ED5C6770AB774ED0938E670F /* Poppins-Regular.ttf */,
+				83EE2AC9591F474292CD441E /* Poppins-SemiBold.ttf */,
+				7AD77E3A17F0406ABC7A0744 /* remixicon.ttf */,
+				35C98299D286494D8F70A0B7 /* SFUIDisplay-Black.otf */,
+				14E27B86952B4C51AEFE366A /* SFUIDisplay-Bold.otf */,
+				0F1CDD19B76F4CC3B6768C7D /* SFUIDisplay-Heavy.otf */,
+				EB505E47216D492A9D149A0C /* SFUIDisplay-Light.otf */,
+				6C9227AA5C4846CDB5EE4B99 /* SFUIDisplay-Medium.otf */,
+				823E2876133147BEB3524A12 /* SFUIDisplay-Regular.otf */,
+				E6BF25880CF547E6B77F82AE /* SFUIDisplay-Semibold.otf */,
+				C4A58D4EF3F8437C8959ADC3 /* SFUIDisplay-Thin.otf */,
+				E8BC405F0DD44D1F8AD02243 /* SFUIDisplay-Ultralight.otf */,
+				09E8965548544830A6DAA827 /* SFUIText-Bold.otf */,
+				DBFF8AC46D184B618B2FD294 /* SFUIText-BoldItalic.otf */,
+				457A38EC878242468502FFD4 /* SFUIText-Heavy.otf */,
+				CFAC8FF8582742269F4F32D3 /* SFUIText-HeavyItalic.otf */,
+				4680EC41F9E6435689819168 /* SFUIText-Light.otf */,
+				6CD636F885D9467BA8308E87 /* SFUIText-LightItalic.otf */,
+				510B01A6070C489E8059C13C /* SFUIText-Medium.otf */,
+				4A6CE715B43C411B95586742 /* SFUIText-MediumItalic.otf */,
+				4ACC73C1AB61436CB6828B14 /* SFUIText-Regular.otf */,
+				72E196A04B104E81B0762AAE /* SFUIText-RegularItalic.otf */,
+				6A1241C25E6F41A69D373E29 /* SFUIText-Semibold.otf */,
+				37E13435E7704360A2D55994 /* SFUIText-SemiboldItalic.otf */,
+				AA683E2D6B2A4E8E8ECA53A6 /* Font Awesome 6 Brands-Regular-400.otf */,
+				B22EB6AFC6F9444FB0D3C635 /* Font Awesome 6 Duotone-Solid-900.otf */,
+				25D3CB5C694E45689A784AD3 /* Font Awesome 6 Pro-Light-300.otf */,
+				214F99EF061D46C682706E57 /* Font Awesome 6 Pro-Regular-400.otf */,
+				17CCEE35617441B4BDA94720 /* Font Awesome 6 Pro-Solid-900.otf */,
+				22B5AAA4A1B0493F82A1F2B1 /* Font Awesome 6 Pro-Thin-100.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				D36A6EDC268D71F20052F2F5 /* Aleo-Bold.ttf */,
+				D36A6ED8268D71F20052F2F5 /* Aleo-BoldItalic.ttf */,
+				D36A6EDB268D71F20052F2F5 /* Aleo-Italic.ttf */,
+				D36A6EDD268D71F20052F2F5 /* Aleo-Light.ttf */,
+				D36A6ED9268D71F20052F2F5 /* Aleo-LightItalic.ttf */,
+				D36A6EDA268D71F20052F2F5 /* Aleo-Regular.ttf */,
+				D36A6ED7268D71F20052F2F5 /* SFUIDisplay-Regular.ttf */,
+				13B07FAE1A68108700A75B9A /* ideaboxSafeT */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* ideaboxSafeTTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				2C82AE912090C5E65C426B86 /* Pods */,
+				77B6E7BAE2764EAE8B8DE28B /* Resources */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* ideaboxSafeT.app */,
+				00E356EE1AD99517003FC87E /* ideaboxSafeTTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* ideaboxSafeTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ideaboxSafeTTests" */;
+			buildPhases = (
+				0E83F1B1FE3BEFC704D86D66 /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+				CC8009E0D80D74EEE4FF324C /* [CP] Embed Pods Frameworks */,
+				D3E00F9279A0A67D82116145 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = ideaboxSafeTTests;
+			productName = ideaboxSafeTTests;
+			productReference = 00E356EE1AD99517003FC87E /* ideaboxSafeTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* ideaboxSafeT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ideaboxSafeT" */;
+			buildPhases = (
+				E46EA99838B0B772A816497D /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2FD02169C7EC758BA3D38B02 /* [CP] Embed Pods Frameworks */,
+				5618C07EBDD9F126900B2FAF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ideaboxSafeT;
+			productName = ideaboxSafeT;
+			productReference = 13B07F961A680F5B00A75B9A /* ideaboxSafeT.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1120;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ideaboxSafeT" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* ideaboxSafeT */,
+				00E356ED1AD99517003FC87E /* ideaboxSafeTTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				D36A6EDE268D71F20052F2F5 /* SFUIDisplay-Regular.ttf in Resources */,
+				D36A6EDF268D71F20052F2F5 /* Aleo-BoldItalic.ttf in Resources */,
+				D36A6EE0268D71F20052F2F5 /* Aleo-LightItalic.ttf in Resources */,
+				D36A6EE1268D71F20052F2F5 /* Aleo-Regular.ttf in Resources */,
+				D36A6EE2268D71F20052F2F5 /* Aleo-Italic.ttf in Resources */,
+				D36A6EE3268D71F20052F2F5 /* Aleo-Bold.ttf in Resources */,
+				D36A6EE4268D71F20052F2F5 /* Aleo-Light.ttf in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D59A928FF7914A5DBB8219A4 /* FontAwesome5_Pro_Light.otf in Resources */,
+				4E13974C853F4FE09B5567A6 /* FontAwesome5_Pro_Regular.otf in Resources */,
+				A32825A001424C4F960B0584 /* FontAwesome5_Pro_Solid.otf in Resources */,
+				A9DE5F445ACD4FCD8D0D7E22 /* FontAwesome5ProBrands-Regular.otf in Resources */,
+				C69EF81D9D874D15987C961F /* FontAwesome5ProDuotone-Solid.otf in Resources */,
+				728BA52712BD4807BD7AEB50 /* Poppins-Bold.ttf in Resources */,
+				DDFD3600040B4BD9A5E92A6A /* Poppins-Light.ttf in Resources */,
+				4B2B8FE68A3942D2BE868FCC /* Poppins-Regular.ttf in Resources */,
+				4AC48F9CADE64CE48D0742B1 /* Poppins-SemiBold.ttf in Resources */,
+				C7C917B882DA48D7ABE33333 /* remixicon.ttf in Resources */,
+				61457F1649564462873C60DE /* SFUIDisplay-Black.otf in Resources */,
+				99BBC04BE9A04E3AA4471B63 /* SFUIDisplay-Bold.otf in Resources */,
+				E958CA662D6748D8B2F78D80 /* SFUIDisplay-Heavy.otf in Resources */,
+				900EB888EB124F60B12DDB4D /* SFUIDisplay-Light.otf in Resources */,
+				3D9340CB9AB54023961FAC88 /* SFUIDisplay-Medium.otf in Resources */,
+				FCFA0CDD838D44DB8E012C70 /* SFUIDisplay-Regular.otf in Resources */,
+				FD0E48AD7E33407E8913340C /* SFUIDisplay-Semibold.otf in Resources */,
+				2E773670700E4322A48A3A0D /* SFUIDisplay-Thin.otf in Resources */,
+				DA6E66E2C5B647C7926A4EB3 /* SFUIDisplay-Ultralight.otf in Resources */,
+				AD0DEADEB60747E189B0EB0C /* SFUIText-Bold.otf in Resources */,
+				D13E7495BF3B4FD9970D020C /* SFUIText-BoldItalic.otf in Resources */,
+				05B6C0C0AFFB4F78A8722EE8 /* SFUIText-Heavy.otf in Resources */,
+				BED7C2728D124FBFA06FD1C2 /* SFUIText-HeavyItalic.otf in Resources */,
+				CDA2596746E2413980B2B1F7 /* SFUIText-Light.otf in Resources */,
+				781106673B01463192332CFB /* SFUIText-LightItalic.otf in Resources */,
+				8C8CBB4C57EA42129DB77BC6 /* SFUIText-Medium.otf in Resources */,
+				E782D1899E85418DAA41483F /* SFUIText-MediumItalic.otf in Resources */,
+				AA791694B9E74618AD3ABA30 /* SFUIText-Regular.otf in Resources */,
+				1EE939763BEA4680A35A7906 /* SFUIText-RegularItalic.otf in Resources */,
+				EA3479E42C744E9794FF297A /* SFUIText-Semibold.otf in Resources */,
+				89FFEA40F7364316A4E270BE /* SFUIText-SemiboldItalic.otf in Resources */,
+				6932EAEF39D4458698332FC2 /* Font Awesome 6 Brands-Regular-400.otf in Resources */,
+				FC17DA9D5C254E7FB73B6923 /* Font Awesome 6 Duotone-Solid-900.otf in Resources */,
+				E7B1E6A9B8344410B10C2DF5 /* Font Awesome 6 Pro-Light-300.otf in Resources */,
+				CC8A824FCB3B4002BEBAADFC /* Font Awesome 6 Pro-Regular-400.otf in Resources */,
+				27956A7331B34C8493EC9A2B /* Font Awesome 6 Pro-Solid-900.otf in Resources */,
+				FA02A670B8764BB388AF2279 /* Font Awesome 6 Pro-Thin-100.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+		};
+		0E83F1B1FE3BEFC704D86D66 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ideaboxSafeT-ideaboxSafeTTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FD02169C7EC758BA3D38B02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5618C07EBDD9F126900B2FAF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT/Pods-ideaboxSafeT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC8009E0D80D74EEE4FF324C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3E00F9279A0A67D82116145 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ideaboxSafeT-ideaboxSafeTTests/Pods-ideaboxSafeT-ideaboxSafeTTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E46EA99838B0B772A816497D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ideaboxSafeT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* ideaboxSafeTTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* ideaboxSafeT */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30AB83954B0CEF5AF9AAD016 /* Pods-ideaboxSafeT-ideaboxSafeTTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ideaboxSafeTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ideaboxSafeT.app/ideaboxSafeT";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A4087360FDE45ED41CD94B9 /* Pods-ideaboxSafeT-ideaboxSafeTTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = ideaboxSafeTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ideaboxSafeT.app/ideaboxSafeT";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B61A0BD764EB02DF0E6B6E2 /* Pods-ideaboxSafeT.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = A8JX9582AC;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = ideaboxSafeT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ideaboxtest.safet2;
+				PRODUCT_NAME = ideaboxSafeT;
+				PROVISIONING_PROFILE_SPECIFIER = "SafeT Adhoc";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7503820AD8953BE17E695CB /* Pods-ideaboxSafeT.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = A8JX9582AC;
+				INFOPLIST_FILE = ideaboxSafeT/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ideaboxtest.safet2;
+				PRODUCT_NAME = ideaboxSafeT;
+				PROVISIONING_PROFILE_SPECIFIER = "SafeT Adhoc";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ideaboxSafeTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ideaboxSafeT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ideaboxSafeT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}
