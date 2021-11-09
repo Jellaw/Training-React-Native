@@ -8,6 +8,7 @@ import ProjecConfigtNavigator from './ProjectConfigNavigator';
 import QrCode from '~/screens/DeviceScreen/qrcode';
 import DeviceDetail from '~/screens/DeviceScreen/device-detail';
 import AddDevice from '~/screens/DeviceScreen/add-device';
+import AddDevEui from '~/screens/DeviceScreen/add-deveui';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,11 @@ const AppNavigator = () => {
         options={{cardStyleInterpolator: forFade}}
         name="AddDevice"
         component={AddDevice}
+      />
+      <Stack.Screen
+        options={{cardStyleInterpolator: forFade}}
+        name="AddDevEui"
+        component={AddDevEui}
       />
     </Stack.Navigator>
   );

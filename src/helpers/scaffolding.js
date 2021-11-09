@@ -4,6 +4,11 @@ export const generateScaffoldingArray = levels => {
   const PAUSE_STATUS = 'PAUSE';
   const CHECK_STATUS = 'CHECK';
 
+  const ALERT = 0;
+  const ACTIVE = 1;
+  const CHECK = 2;
+  const PAUSE = 3;
+
   //find maxLevel, maxBay
   let maxOfLevel = 0;
   let maxOfBay = 0;
@@ -25,38 +30,37 @@ export const generateScaffoldingArray = levels => {
     .map(() => Array(maxOfBay).fill({isEmpty: true}));
 
   const statusProcessor = (latestStatus, currentStatus) => {
-    if (latestStatus == ALERT_STATUS || currentStatus == ALERT_STATUS)
+    if (latestStatus == ALERT_STATUS || currentStatus == ALERT)
       return ALERT_STATUS;
-    if (latestStatus == PAUSE_STATUS || currentStatus == PAUSE_STATUS)
+    if (latestStatus == PAUSE_STATUS || currentStatus == PAUSE)
       return PAUSE_STATUS;
-    if (latestStatus == CHECK_STATUS || currentStatus == CHECK_STATUS)
+    if (latestStatus == CHECK_STATUS || currentStatus == CHECK)
       return CHECK_STATUS;
-    return ACTIVE_STATUS;
+    if (latestStatus == ACTIVE_STATUS || currentStatus == ACTIVE)
+      return ACTIVE_STATUS;
+    return -1;
   };
 
-  const sideProcessor = sides =>
-    sides !== undefined
-      ? sides.reduce(
-          (prev, cur) => {
-            if (cur.projectNodes.length == 0) return prev;
-
-            return {
-              ...prev,
-              status: statusProcessor(prev.status, cur.projectNodes[0].status),
-              projectNodes: {
-                ...prev.projectNodes,
-                [cur.name]: cur.projectNodes[0],
-              },
-            };
+  const sideProcessor = (sides = []) =>
+    sides.reduce(
+      (prev, cur) => {
+        if (cur.projectNodes.length == 0) return prev;
+        return {
+          ...prev,
+          status: statusProcessor(prev.status, cur.projectNodes[0].status),
+          projectNodes: {
+            ...prev.projectNodes,
+            [cur.name]: cur.projectNodes[0],
           },
-          {status: 'active'},
-        )
-      : '';
+        };
+      },
+      {status: -1},
+    );
 
   //Fill in the node
   levels.forEach(level => {
     const {name: levelNo, children} = level;
-    children.forEach(bay => {
+    (children || []).forEach(bay => {
       const {name: bayNo, children: sides} = bay;
       scaffolding[maxOfLevel - levelNo][bayNo - 1] = sideProcessor(sides);
     });

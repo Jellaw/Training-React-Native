@@ -1,12 +1,12 @@
 <!-- Defaul -->
 <!-- <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.ideaboxsafet"> -->
+  package="com.ideaboxtest.safet2"> -->
 
 <!-- Custom -->
 <manifest
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="com.ideaboxsafet">
+  package="com.ideaboxtest.safet2">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />

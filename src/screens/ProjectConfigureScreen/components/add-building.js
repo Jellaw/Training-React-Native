@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup';
 import {Platform} from 'react-native';
 import {
@@ -23,10 +23,19 @@ import {
   deleteProjectDeviceLocation,
   updateProjectDeviceLocation,
 } from '~/store/project/actions';
+import ROLES from '~/constants/permissions';
 
 const AddBuilding = props => {
-  const {data, projectId, visible, onClose, onConfirm, isEdit, setIsDelete} =
-    props;
+  const {
+    arrBuilding,
+    data,
+    projectId,
+    visible,
+    onClose,
+    onConfirm,
+    isEdit,
+    setIsDelete,
+  } = props;
 
   const sibling = React.useRef(null);
 
@@ -40,6 +49,7 @@ const AddBuilding = props => {
     sibling.current = new RootSiblings(
       (
         <AddBuildingPopup
+          arrBuilding={arrBuilding}
           data={data || {}}
           projectId={projectId}
           isEdit={isEdit}
@@ -64,8 +74,9 @@ const AddBuilding = props => {
 
 const AddBuildingPopup = props => {
   const dispatch = useDispatch();
-  const {data, projectId, onClose, isEdit, setIsDelete} = props;
+  const {arrBuilding, data, projectId, onClose, isEdit, setIsDelete} = props;
   const insets = useSafeAreaInsets();
+  const {roles} = useSelector(state => state.me);
 
   const popupHeight = React.useRef(Dimensions.get('window').height);
   const anim = React.useRef(new Animated.Value(0));
@@ -100,7 +111,20 @@ const AddBuildingPopup = props => {
 
   const renderContent = () => {
     const validationSchema = Yup.object().shape({
-      name: Yup.string().required().label('Building Name'),
+      name: Yup.string()
+        .required()
+        .test(function (value) {
+          const {path, createError} = this;
+          if (
+            (arrBuilding || []).find(item => {
+              return item.name == value;
+            })
+          ) {
+            return createError({path, message: 'Duplicate Building'});
+          }
+          return true;
+        })
+        .label('Building Name'),
     });
 
     const handleSubmit = ({name}) => {
@@ -154,7 +178,7 @@ const AddBuildingPopup = props => {
         <View style={{paddingHorizontal: 10, marginTop: 10}}>
           <View>
             <Form
-              initialValues={{name: data.name || ''}}
+              initialValues={{name: (isEdit && data.name) || ''}}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}>
               <Text style={styles.inputLabel}>Building Name</Text>
@@ -164,7 +188,7 @@ const AddBuildingPopup = props => {
                 name="name"
                 placeholder="Building Name"
               />
-              {isEdit && (
+              {roles.includes(ROLES.PROJECT_DELETE) && isEdit && (
                 <View style={{marginTop: 15, alignItems: 'flex-end'}}>
                   <TouchableOpacity
                     onPress={handleDelete}

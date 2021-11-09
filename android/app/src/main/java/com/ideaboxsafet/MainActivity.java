@@ -1,4 +1,4 @@
-package com.ideaboxsafet;
+package com.ideaboxtest.safet2;
 
 import com.facebook.react.ReactActivity;
 

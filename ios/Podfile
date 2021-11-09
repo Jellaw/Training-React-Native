@@ -14,6 +14,8 @@ target 'ideaboxSafeT' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'Firebase/Messaging'
+
   target 'ideaboxSafeTTests' do
     inherit! :complete
     # Pods for testing

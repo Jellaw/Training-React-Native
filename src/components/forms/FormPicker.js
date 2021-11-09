@@ -5,6 +5,8 @@ import Picker from '../Picker';
 import ErrorMessage from './ErrorMessage';
 
 function AppFormPicker({
+  addAction,
+  disabled,
   data,
   name,
   numberOfColumns,
@@ -22,6 +24,8 @@ function AppFormPicker({
   return (
     <>
       <Picker
+        addAction={addAction}
+        disabled={disabled}
         data={data}
         numberOfColumns={numberOfColumns}
         onSelectItem={item => handleOnChange(item)}

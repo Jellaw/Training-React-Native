@@ -17,6 +17,7 @@ import fonts from '~/assets/fonts';
 import {isEmpty} from 'validate.js';
 
 function AppPicker({
+  addAction,
   icon,
   data,
   numberOfColumns = 1,
@@ -25,6 +26,7 @@ function AppPicker({
   placeholder,
   selectedItem,
   width = '100%',
+  disabled,
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -34,8 +36,15 @@ function AppPicker({
   };
   return (
     <>
-      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-        <View style={[styles.container, {width}]}>
+      <TouchableWithoutFeedback
+        disabled={disabled}
+        onPress={() => setModalVisible(true)}>
+        <View
+          style={[
+            styles.container,
+            disabled ? {backgroundColor: colors.lightgrey} : '',
+            {width},
+          ]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -64,21 +73,20 @@ function AppPicker({
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
-          <Button title="Close" onPress={() => setModalVisible(false)} />
+          {addAction && addAction()}
           <FlatList
             data={data}
-            keyExtractor={(item, index) => {
-              `${item.id}_${index}`;
-            }}
+            extraData={data}
             numColumns={numberOfColumns}
             renderItem={({item, index}) => (
               <PickerItemComponent
-                key={index}
+                index={index}
                 label={item.name || item.applicationName || item.devEui}
                 onPress={() => onChange(item)}
               />
             )}
           />
+          <Button title="Close" onPress={() => setModalVisible(false)} />
         </Screen>
       </Modal>
     </>

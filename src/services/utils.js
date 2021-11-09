@@ -56,6 +56,7 @@ const AxiosWrapper = options => {
             throw '';
           }
         }
+        throw error;
       });
   };
   return {

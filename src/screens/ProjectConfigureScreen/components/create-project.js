@@ -160,7 +160,7 @@ const CreateProjectPopup = props => {
       companyId,
       name,
       location,
-      defaultTtnApplicationId,
+      defaultApplicationId,
     }) => {
       if (isEdit) {
         dispatch(
@@ -169,7 +169,7 @@ const CreateProjectPopup = props => {
             name: name,
             location: location,
             status: isActive ? 'ACTIVE' : 'INACTIVE',
-            defaultTtnApplicationId: defaultTtnApplicationId,
+            defaultApplicationId: defaultApplicationId,
           }),
         );
         return onClose();
@@ -180,7 +180,7 @@ const CreateProjectPopup = props => {
           name: name,
           location: location,
           status: isActive ? 'ACTIVE' : 'INACTIVE',
-          defaultTtnApplicationId: defaultTtnApplicationId,
+          defaultApplicationId: defaultApplicationId,
         }),
       );
       onClose();
@@ -218,7 +218,7 @@ const CreateProjectPopup = props => {
                 companyId: (data.company || {}).id || '',
                 name: data.name || '',
                 location: data.location || '',
-                defaultTtnApplicationId: data.defaultTtnApplicationId || '',
+                defaultApplicationId: data.defaultApplicationId || '',
               }}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}>
@@ -248,7 +248,7 @@ const CreateProjectPopup = props => {
               />
               <Text style={styles.inputLabel}>TTN Application</Text>
               <AppFormPicker
-                name="defaultTtnApplicationId"
+                name="defaultApplicationId"
                 data={ttnApplicationList || []}
                 placeholder="Select TTN Application"
               />

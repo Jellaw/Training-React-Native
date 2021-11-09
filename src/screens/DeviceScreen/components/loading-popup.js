@@ -9,6 +9,8 @@ const LoadingPopup = props => {
   const {
     visible,
     showEndMessage = false,
+    alertColor,
+    setAlertColor,
     endIcon,
     endTitle,
     endMessage,
@@ -47,7 +49,8 @@ const LoadingPopup = props => {
           if (currentVisible) {
             setTimeout(() => {
               setVisible(false);
-            }, 1500);
+              setAlertColor(colors.darkgrey);
+            }, 3000);
           }
         } else {
           setVisible(false);
@@ -62,7 +65,7 @@ const LoadingPopup = props => {
         style={{backgroundColor: '#00000099', flex: 1, paddingHorizontal: 15}}>
         <SafeAreaView
           style={{
-            backgroundColor: colors.darkgrey,
+            backgroundColor: alertColor,
             paddingHorizontal: 21,
             borderBottomLeftRadius: 26,
             borderBottomRightRadius: 26,

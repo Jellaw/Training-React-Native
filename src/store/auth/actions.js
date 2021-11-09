@@ -24,12 +24,12 @@ export const reqForGotPassword =
   };
 
 export const logInWithToken =
-  ({token}) =>
+  ({token, deviceToken}) =>
   async dispatch => {
     dispatch(exports.setToken(token));
     loggedInClient.defaults.headers['Authorization'] = `Bearer ${token}`;
     tokenStorage.setToken(token);
-
+    tokenStorage.setDeviceToken(deviceToken);
     const me = await meAPI.getMe();
 
     dispatch(exports.logIn());
@@ -37,19 +37,29 @@ export const logInWithToken =
   };
 
 export const logInWithEmail =
-  ({email, password, callBack}) =>
+  ({email, password, deviceToken, callBack}) =>
   async dispatch => {
     await authAPI
-      .login(email, password)
-      .then(data => dispatch(exports.logInWithToken({token: data.data.token})))
+      .login(email, password, deviceToken)
+      .then(data =>
+        dispatch(
+          exports.logInWithToken({
+            token: data.data.token,
+            deviceToken: deviceToken,
+          }),
+        ),
+      )
       .catch(() => dispatch(exports.logInFailed(LOGIN_FAILED)));
     //TODO: rederect to a screen
     return callBack && callBack();
   };
 
-export const logOutApp = () => dispatch => {
+export const logOutApp = () => async dispatch => {
+  const deviceToken = await tokenStorage.getDeviceToken();
+  (await tokenStorage.getToken()) && (await meAPI.logout(deviceToken));
   dispatch(meActions.setMe({}));
   dispatch(exports.setToken(''));
-  tokenStorage.setToken('');
+  tokenStorage.removeToken();
+  tokenStorage.removeDeviceToken();
   return dispatch(exports.logOut());
 };

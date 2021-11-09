@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup';
 import {Platform} from 'react-native';
@@ -17,26 +17,27 @@ import fonts from '~/assets/fonts';
 import {Form, SubmitButton} from '~/components/forms';
 import MyIcon from '~/components/MyIcon';
 import styles from '../styles';
-import AppFormPicker from '~/components/forms/FormPicker';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import {
   createProjectDeviceLocation,
-  createProjectNode,
   deleteProjectDeviceLocation,
 } from '~/store/project/actions';
-import {getNodeList} from '~/store/node/actions';
+import ROLES from '~/constants/permissions';
+import {isDevEui} from '~/helpers/common';
+import AppFormField from '~/components/forms/FormField';
+import routes from '~/navigation/routes';
 
 const AddSide = props => {
   const {
     data,
     nameSide,
-    ttnApplicationList,
     parentId,
     projectId,
     visible,
     onClose,
     onConfirm,
     isEdit,
+    navigation,
   } = props;
 
   const sibling = React.useRef(null);
@@ -51,9 +52,9 @@ const AddSide = props => {
     sibling.current = new RootSiblings(
       (
         <AddSidePopup
+          navigation={navigation}
           data={data || {}}
           nameSide={nameSide}
-          ttnApplicationList={ttnApplicationList}
           parentId={parentId}
           projectId={projectId}
           isEdit={isEdit}
@@ -77,18 +78,10 @@ const AddSide = props => {
 
 const AddSidePopup = props => {
   const dispatch = useDispatch();
-  const {
-    data,
-    nameSide,
-    ttnApplicationList,
-    parentId,
-    projectId,
-    onClose,
-    isEdit,
-  } = props;
+  const {data, nameSide, parentId, projectId, onClose, isEdit, navigation} =
+    props;
   const insets = useSafeAreaInsets();
-  const nodeList = useSelector(state => state.node.data);
-  const [node, setNode] = useState({});
+  const {roles} = useSelector(state => state.me);
 
   const popupHeight = React.useRef(Dimensions.get('window').height);
   const anim = React.useRef(new Animated.Value(0));
@@ -123,41 +116,38 @@ const AddSidePopup = props => {
 
   const renderContent = () => {
     const validationSchema = Yup.object().shape({
-      applicationId: Yup.string().required().label('TTN Application'),
-      deviceId: Yup.string().required().label('Device'),
+      devEui: Yup.string()
+        .required()
+        .test(function (value) {
+          const {path, createError} = this;
+          if (!isDevEui(value)) {
+            return createError({path, message: 'DevEui incorrect'});
+          }
+          return true;
+        })
+        .label('DevEui'),
     });
 
-    const handleSubmit = async () => {
+    const handleSubmit = async ({devEui}) => {
       const dataCreate = await dispatch(
         createProjectDeviceLocation(projectId, {
           parentId: parentId,
           name: nameSide,
         }),
       );
-      dispatch(
-        createProjectNode(projectId, {
-          devEui: node.devEui,
-          deviceLocationTreeId: (dataCreate.data || {}).id,
-          ttnApplicationId: node.applicationId,
-        }),
-      );
+      navigation.navigate(routes.ADD_DEVEUI, {
+        projectId: projectId,
+        deviceLocationTreeId: (dataCreate.data || {}).id,
+        devEui: devEui,
+      });
       onClose();
-    };
-
-    const getDevice = id => {
-      dispatch(
-        getNodeList({
-          projectId: {isNull: 1},
-          meta: {pageSize: 1000},
-          applicationId: id,
-        }),
-      );
     };
 
     const handleDelete = () => {
       dispatch(deleteProjectDeviceLocation(projectId, data.id));
       onClose();
     };
+
     return (
       <View>
         <View
@@ -187,40 +177,12 @@ const AddSidePopup = props => {
         <View style={{paddingHorizontal: 10, marginTop: 10}}>
           <View>
             <Form
-              initialValues={{applicationId: '', deviceId: ''}}
+              initialValues={{devEui: ''}}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}>
-              <Text style={styles.inputLabel}>TTN Applications</Text>
-              <AppFormPicker
-                name="applicationId"
-                data={ttnApplicationList || []}
-                placeholder="Select TTN Applications"
-                onChange={id => getDevice(id)}
-              />
-
-              <Text style={styles.inputLabel}>Device</Text>
-              <AppFormPicker
-                name="deviceId"
-                data={nodeList || []}
-                placeholder="Select Device"
-                onChange={data => setNode(data)}
-              />
-              {/* <Text style={styles.inputLabel}>TTN Applycations</Text>
-              <Text
-                style={{
-                  padding: 12,
-                  ...styles.textInput,
-                }}>
-                {/* {(ttnApplaycationList || []).find(item => item.id === !isEmpty(data.projectNodes[0]) ? data.projectNodes[0].ttnApplicationId : {}).applicationName || ''}
-                {(
-                  (ttnApplaycationList || []).find(item =>
-                    !isEmpty(data.projectNodes)
-                      ? item.id === data.projectNodes[0].ttnApplicationId
-                      : '',
-                  ) || {}
-                ).applicationName || ''}
-              </Text> */}
-              {isEdit && (
+              <Text style={styles.inputLabel}>DevEui</Text>
+              <AppFormField name="devEui" />
+              {roles.includes(ROLES.PROJECT_DELETE) && isEdit && (
                 <View style={{marginTop: 15, alignItems: 'flex-end'}}>
                   <TouchableOpacity
                     onPress={handleDelete}
@@ -236,7 +198,18 @@ const AddSidePopup = props => {
                   </TouchableOpacity>
                 </View>
               )}
-              <SubmitButton stylesBtn={styles.submitButton} title="Save" />
+              <SubmitButton stylesBtn={styles.submitButton} title="Next" />
+              <TouchableOpacity
+                onPress={() => onDismiss()}
+                style={styles.button}>
+                <Text
+                  style={{
+                    ...fonts.type.bold(16, colors.purple),
+                    textAlign: 'center',
+                  }}>
+                  Cancel
+                </Text>
+              </TouchableOpacity>
             </Form>
           </View>
         </View>

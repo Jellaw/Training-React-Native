@@ -3,13 +3,14 @@ import {View} from 'react-native';
 import WallItem from './wall';
 
 function ProjectList(props) {
-  const {data, onNodePress, onWallToggle, selectedItems} = props;
+  const {projectName, data, onNodePress, onWallToggle, selectedItems} = props;
 
   useEffect(() => {}, []);
 
   const renderItem = (item, index) => {
     return (
       <WallItem
+        projectName={projectName}
         item={item}
         isExpand={selectedItems.includes(item)}
         onPress={onNodePress}

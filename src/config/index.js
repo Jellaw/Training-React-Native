@@ -33,6 +33,6 @@ export const localeDatePicker = {
 
 export const ASSET_URL = 'http://54.66.88.247:8000';
 export default {
-  API_URL: 'http://54.66.88.247:4000',
+  API_URL: 'https://apis.safe-tdevice.com',
   TOKEN_KEY: 'safet.com.token',
 };

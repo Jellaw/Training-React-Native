@@ -15,6 +15,7 @@ export const projectSlice = createSlice({
     contact: [],
     isCreateProjectNode: false,
     isCreateProjectForceLink: false,
+    isProjectBulkAction: false,
   },
   reducers: {
     projectList: (state, action) => {
@@ -50,6 +51,9 @@ export const projectSlice = createSlice({
     },
     setIsCreateProjectForceLink: (state, action) => {
       state.isCreateProjectForceLink = action.payload;
+    },
+    setIsProjectBulkAction: (state, action) => {
+      state.isProjectBulkAction = action.payload;
     },
   },
 });

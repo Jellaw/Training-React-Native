@@ -10,6 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 import routes from '~/navigation/routes';
 import {NODE_STATUS} from '~/constants/masterData';
 import {generateScaffoldingArray} from '~/helpers/scaffolding';
+import {getCheckNode} from '~/store/node/actions';
 
 const dot = color => {
   return {
@@ -26,30 +27,35 @@ const dot = color => {
 };
 
 function ProjectScaffolding(props) {
-  const {data, selectedItems, onWallToggle} = props;
+  const {
+    data,
+    selectedItems,
+    onWallToggle,
+    currentWall,
+    setCurrentWall,
+    currentNode,
+  } = props;
   const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState(null);
+  const [dataNode, setDataNode] = useState({});
+  const [location, setLocation] = useState({});
+  const [selected, setSelected] = useState(currentNode);
   const navigation = useNavigation();
   const scrollView = useRef(null);
 
-  // useEffect(() => {
-  //   if (currentNode && scrollView.current) {
-  //     setSelectedId('L4-8');
-  //     scrollView.current.scrollTo({x: 8 * 40, animiated: true});
-  //   }
-  // }, []);
-
   const renderScaffoldings = item => {
-    const data = generateScaffoldingArray(item.children);
+    const data = generateScaffoldingArray(item.children || []);
     let countBay = 0;
 
     const countBayLoop = length => {
       if (length > countBay) countBay = length;
     };
 
-    const onBayPressed = id => {
+    const onBayPressed = (id, data, level, bay) => {
       if (selected === id) {
         setVisible(true);
+        setDataNode(data);
+        setLocation({level: level, bay: bay});
+        setCurrentWall(item.id);
       } else {
         setSelected(id);
       }
@@ -62,23 +68,26 @@ function ProjectScaffolding(props) {
         showsHorizontalScrollIndicator={false}>
         <View>
           {/* {renderScaffolding(data)} */}
-          {(data || []).map((item, index) => (
+          {(data || []).map((itemWall, index) => (
             <View
               key={index}
               style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{...fonts.type.medium(12), width: 30}}>
                 {data.length - index}
               </Text>
-              {countBayLoop(item.length)}
-              {item.map((bay, bayindex) => (
+              {countBayLoop(itemWall.length)}
+              {itemWall.map((bay, bayindex) => (
                 <ScaffoldingBay
                   item={bay}
                   isShow={bay.isEmpty ? false : true}
                   onPress={() =>
-                    bay.isEmpty
+                    bay.isEmpty || bay.status === -1
                       ? ''
                       : onBayPressed(
                           `${item.id}-${data.length - index}-${bayindex + 1}`,
+                          bay,
+                          data.length - index,
+                          bayindex + 1,
                         )
                   }
                   isSelect={
@@ -111,7 +120,7 @@ function ProjectScaffolding(props) {
   };
 
   const renderItem = (item, index) => {
-    const isExpand = selectedItems.includes(item);
+    const isExpand = selectedItems.includes(item.id) || currentWall === item.id;
     return (
       <View
         style={{
@@ -121,7 +130,7 @@ function ProjectScaffolding(props) {
         }}
         key={index.toString()}>
         <TouchableOpacity
-          onPress={() => onWallToggle(item)}
+          onPress={() => onWallToggle(item.id)}
           style={{...styles.row, paddingRight: 16}}>
           <Text style={{...fonts.type.semibold(16), flex: 1}}>{item.name}</Text>
           <Text
@@ -172,15 +181,29 @@ function ProjectScaffolding(props) {
     return <View style={{marginTop: 24}}>{(data || []).map(renderItem)}</View>;
   };
 
+  const handleGoToDeviceDetail = async devEui => {
+    const check = await getCheckNode({devEui: devEui});
+    if (check) {
+      return navigation.navigate(routes.DEVICE_DETAIL, {
+        status: check.status,
+        data: check,
+      });
+    }
+    navigation.navigate(routes.DEVICE_DETAIL, {
+      status: 'UNRECOG',
+      devEui: devEui,
+    });
+  };
+
   return (
     <View style={{}}>
       {renderList()}
       <NodePopup
         visible={visible}
+        data={dataNode}
+        location={location}
         onClose={() => setVisible(false)}
-        onChoose={type => {
-          navigation.navigate(routes.DEVICE_DETAIL, {type});
-        }}
+        onChoose={devEui => handleGoToDeviceDetail(devEui)}
       />
     </View>
   );

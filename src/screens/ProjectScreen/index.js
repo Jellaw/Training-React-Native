@@ -10,6 +10,7 @@ import {FlatList} from 'react-native';
 import routes from '~/navigation/routes';
 import {NODE_STATUS, PROJECT_STATUS} from '~/constants/masterData';
 import {getProjectDetail} from '~/store/project/actions';
+import ROLES from '~/constants/permissions';
 
 const tagStyle = color => ({
   height: 16,
@@ -23,6 +24,7 @@ const tagStyle = color => ({
 function ProjectScreen({navigation}) {
   const dispatch = useDispatch();
   const {obj} = useSelector(state => state.project);
+  const {roles} = useSelector(state => state.me);
 
   useEffect(() => {}, []);
 
@@ -144,6 +146,7 @@ function ProjectScreen({navigation}) {
               navigation.navigate(routes.BUILDING_DETAIL, {
                 building: item,
                 projectName: obj.name,
+                buildingId: '',
               })
             }
             style={{
@@ -178,13 +181,15 @@ function ProjectScreen({navigation}) {
               marginBottom: 10,
             }}>
             <Text style={{...fonts.type.bold(34), flex: 1}}>{obj.name}</Text>
-            <TouchableOpacity
-              onPress={handleGoToConfigureProject}
-              style={{
-                ...styles.smallBtn,
-              }}>
-              <MyIcon name="edit" size={16} color={colors.grey} />
-            </TouchableOpacity>
+            {roles.includes(ROLES.PROJECT_UPDATE) && (
+              <TouchableOpacity
+                onPress={handleGoToConfigureProject}
+                style={{
+                  ...styles.smallBtn,
+                }}>
+                <MyIcon name="edit" size={16} color={colors.grey} />
+              </TouchableOpacity>
+            )}
           </View>
           <View style={styles.row}>
             <View style={{...styles.row, flex: 1}}>

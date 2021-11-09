@@ -67,6 +67,13 @@ const postProjectNodeCreate = (projectId, data) => {
 const postProjectForceLink = (projectId, data) => {
   return loggedInClient.post(`/v1/projects/${projectId}/force-link`, data);
 };
+
+const postProjectBulkAction = (projectId, type, data) => {
+  return loggedInClient.post(
+    `/v1/projects/${projectId}/bulk-action/${type}`,
+    data,
+  );
+};
 export default {
   getProjectHistories,
   getDashboard,
@@ -82,4 +89,5 @@ export default {
   getProjectContactList,
   postProjectNodeCreate,
   postProjectForceLink,
+  postProjectBulkAction,
 };

@@ -2,7 +2,10 @@ import colors from '~/assets/colors';
 import {NODE_STATUS} from '~/constants/masterData';
 
 const getDeviceColor = status => {
-  switch (status) {
+  if (status === null) {
+    return colors.grey;
+  }
+  switch (Number(status)) {
     case NODE_STATUS.ALERT:
       return colors.red;
     case NODE_STATUS.ACTIVE:
@@ -19,6 +22,9 @@ const getDeviceColor = status => {
 };
 
 const getDeviceStateIcon = status => {
+  if (status === null) {
+    return 'pause-circle';
+  }
   switch (status) {
     case NODE_STATUS.ALERT:
       return 'exclamation-circle';

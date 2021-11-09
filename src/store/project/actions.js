@@ -13,6 +13,7 @@ export const {
   projectContact,
   setIsCreateProjectNode,
   setIsCreateProjectForceLink,
+  setIsProjectBulkAction,
 } = projectSlice.actions;
 
 export const getProjectList = query => async dispatch => {
@@ -120,4 +121,14 @@ export const createProjectForceLink = (projectId, data) => dispatch => {
       return data;
     })
     .catch(() => dispatch(exports.setIsCreateProjectForceLink(false)));
+};
+
+export const ProjectBulkAction = (projectId, type, data) => dispatch => {
+  return projectAPI
+    .postProjectBulkAction(projectId, type, data)
+    .then(data => {
+      dispatch(exports.setIsProjectBulkAction(true));
+      return data;
+    })
+    .catch(() => dispatch(exports.setIsProjectBulkAction(false)));
 };

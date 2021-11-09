@@ -17,6 +17,7 @@ import {
 } from '~/store/project/actions';
 import {getNodeInDeviceLocationTree} from '~/helpers/common';
 import {notification} from '~/components/alert/NotificationCenter';
+import ROLES from '~/constants/permissions';
 
 function BuildingConfig({navigation, route}) {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function BuildingConfig({navigation, route}) {
   const [data, setData] = useState({});
   const [buildingVisible, setBuildingVisible] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const {buildingId, projectId} = route.params;
+  const {arrBuilding, buildingId, projectId} = route.params;
+  const {roles} = useSelector(state => state.me);
 
   useEffect(() => {
     getNodeInDeviceLocationTree(obj.deviceLocationTrees, buildingId, obj =>
@@ -64,6 +66,14 @@ function BuildingConfig({navigation, route}) {
     }
   }, [isDeleteDeviceLocation]);
 
+  const arrWallName = () => {
+    let arr = [];
+    ((data || {}).children || []).map(item => {
+      arr.push({name: item.name});
+    });
+    return arr;
+  };
+
   const renderWallItem = (item, index) => {
     const count = data => {
       let countBay = 0;
@@ -80,6 +90,7 @@ function BuildingConfig({navigation, route}) {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(routes.PROJECT_WALL_CONFIG, {
+            arrWall: {children: arrWallName()},
             wallId: item.id,
             projectId: projectId,
           })
@@ -129,13 +140,15 @@ function BuildingConfig({navigation, route}) {
             <MyIcon name="arrow-left" size={18} color={colors.purple} />
           </TouchableOpacity>
           <View style={{flex: 1}} />
-          <TouchableOpacity
-            onPress={() => setVisible(true)}
-            style={styles.button}>
-            <Text style={{...fonts.type.bold(12, colors.purple)}}>
-              Add Wall
-            </Text>
-          </TouchableOpacity>
+          {roles.includes(ROLES.PROJECT_CREATE) && (
+            <TouchableOpacity
+              onPress={() => setVisible(true)}
+              style={styles.button}>
+              <Text style={{...fonts.type.bold(12, colors.purple)}}>
+                Add Wall
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     );
@@ -185,6 +198,7 @@ function BuildingConfig({navigation, route}) {
       </ScrollView>
       {renderBottomBar()}
       <AddBuilding
+        arrBuilding={arrBuilding}
         data={data}
         projectId={projectId}
         visible={buildingVisible}
@@ -193,6 +207,7 @@ function BuildingConfig({navigation, route}) {
         setIsDelete={setIsDelete}
       />
       <AddWall
+        arrWall={data}
         visible={visible}
         onClose={() => setVisible(false)}
         projectId={projectId}

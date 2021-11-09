@@ -16,11 +16,13 @@ import {
   setIsCreateDeviceLocation,
 } from '~/store/project/actions';
 import {notification} from '~/components/alert/NotificationCenter';
+import ROLES from '~/constants/permissions';
 
 function ProjectConfigScreen({navigation}) {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const [projectVisible, setProjectVisible] = useState(false);
+  const {roles} = useSelector(state => state.me);
   const {obj, isUpdate, isCreateDeviceLocation} = useSelector(
     state => state.project,
   );
@@ -41,8 +43,16 @@ function ProjectConfigScreen({navigation}) {
     }
   }, [isCreateDeviceLocation]);
 
+  const arrBuildingName = () => {
+    let arr = [];
+    ((obj || {}).deviceLocationTrees || []).map(item => {
+      arr.push({name: item.name});
+    });
+    return arr;
+  };
   const onBuilding = item => {
     navigation.navigate(routes.PROJECT_BUILDING_CONFIG, {
+      arrBuilding: arrBuildingName(),
       buildingId: item.id,
       projectId: obj.id,
     });
@@ -53,7 +63,7 @@ function ProjectConfigScreen({navigation}) {
     setProjectVisible(true);
   };
 
-  const renderWallItem = (item, index) => {
+  const renderWallItem = (item, index, dataWall) => {
     const count = data => {
       let countBay = 0;
       let countNode = 0;
@@ -65,10 +75,18 @@ function ProjectConfigScreen({navigation}) {
       });
       return {countBay: countBay, countNode: countNode};
     };
+    const arrWallName = () => {
+      let arr = [];
+      ((dataWall || {}).children || []).map(item => {
+        arr.push({name: item.name});
+      });
+      return arr;
+    };
     return (
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(routes.PROJECT_WALL_CONFIG, {
+            arrWall: {children: arrWallName()},
             wallId: item.id,
             projectId: obj.id,
           })
@@ -118,7 +136,9 @@ function ProjectConfigScreen({navigation}) {
           <MyIcon name="angle-right" size={20} color={colors.purple} />
         </TouchableOpacity>
         <View style={{paddingLeft: 10, marginTop: 10}}>
-          {(item.children || []).map(renderWallItem)}
+          {(item.children || []).map((wallItem, index) =>
+            renderWallItem(wallItem, index, item),
+          )}
         </View>
       </View>
     );
@@ -129,13 +149,15 @@ function ProjectConfigScreen({navigation}) {
       <SafeAreaView edges={['bottom']} style={{...styles.bottomBar}}>
         <View style={{height: 60, marginTop: 25, flexDirection: 'row'}}>
           <View style={{flex: 1}} />
-          <TouchableOpacity
-            onPress={() => setVisible(true)}
-            style={styles.button}>
-            <Text style={{...fonts.type.bold(12, colors.purple)}}>
-              Add Building
-            </Text>
-          </TouchableOpacity>
+          {roles.includes(ROLES.PROJECT_CREATE) && (
+            <TouchableOpacity
+              onPress={() => setVisible(true)}
+              style={styles.button}>
+              <Text style={{...fonts.type.bold(12, colors.purple)}}>
+                Add Building
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     );
@@ -176,6 +198,7 @@ function ProjectConfigScreen({navigation}) {
       </ScrollView>
       {renderBottomBar()}
       <AddBuilding
+        arrBuilding={obj.deviceLocationTrees}
         projectId={obj.id}
         visible={visible}
         onClose={() => setVisible(false)}

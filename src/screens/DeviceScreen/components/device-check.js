@@ -63,7 +63,7 @@ const DeviceCheckPopup = props => {
 
   const onBarCodeScanned = async result => {
     if (result.data) {
-      onNext();
+      onNext(result.data);
     }
   };
 

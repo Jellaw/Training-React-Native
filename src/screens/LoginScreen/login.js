@@ -1,6 +1,7 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
 import {useDispatch} from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
 import * as Yup from 'yup';
 import AppText from '~/components/AppText';
 import {ButtonLink} from '~/components/Button';
@@ -21,7 +22,10 @@ const validationSchema = Yup.object().shape({
 function LoginScreen({navigation}) {
   const dispatch = useDispatch();
   const handleSubmit = async ({email, password}) => {
-    dispatch(logInWithEmail({email, password}));
+    await messaging().registerDeviceForRemoteMessages();
+    const deviceToken = await messaging().getToken();
+
+    dispatch(logInWithEmail({email, password, deviceToken}));
   };
 
   return (

@@ -17,6 +17,7 @@ import {
   setIsUpdateDeviceLocation,
 } from '~/store/project/actions';
 import {notification} from '~/components/alert/NotificationCenter';
+import ROLES from '~/constants/permissions';
 
 function LevelConfig({navigation, route}) {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function LevelConfig({navigation, route}) {
     isCreateDeviceLocation,
     isDeleteDeviceLocation,
   } = useSelector(state => state.project);
-  const {levelId, projectId} = route.params;
+  const {arrLevel, levelId, projectId} = route.params;
+  const {roles} = useSelector(state => state.me);
 
   useEffect(() => {
     getNodeInDeviceLocationTree(obj.deviceLocationTrees, levelId, obj =>
@@ -64,11 +66,20 @@ function LevelConfig({navigation, route}) {
     }
   }, [isDeleteDeviceLocation]);
 
+  const arrBayName = () => {
+    let arr = [];
+    ((data || {}).children || []).map(item => {
+      arr.push({name: item.name});
+    });
+    return arr;
+  };
+
   const renderBayItem = (item, index) => {
     return (
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(routes.PROJECT_BAY_CONFIG, {
+            arrBay: {children: arrBayName()},
             bayId: item.id,
             projectId: projectId,
             numberOfBays: (data.props || {}).numberOfBays,
@@ -105,11 +116,15 @@ function LevelConfig({navigation, route}) {
             <MyIcon name="arrow-left" size={18} color={colors.purple} />
           </TouchableOpacity>
           <View style={{flex: 1}} />
-          <TouchableOpacity
-            onPress={() => setVisible(true)}
-            style={styles.button}>
-            <Text style={{...fonts.type.bold(12, colors.purple)}}>Add Bay</Text>
-          </TouchableOpacity>
+          {roles.includes(ROLES.PROJECT_CREATE) && (
+            <TouchableOpacity
+              onPress={() => setVisible(true)}
+              style={styles.button}>
+              <Text style={{...fonts.type.bold(12, colors.purple)}}>
+                Add Bay
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     );
@@ -170,6 +185,7 @@ function LevelConfig({navigation, route}) {
       {renderBottomBar()}
       <AddLevel
         data={data}
+        arrLevel={arrLevel}
         projectId={projectId}
         visible={levelVisible}
         isEdit={true}
@@ -177,6 +193,7 @@ function LevelConfig({navigation, route}) {
         setIsDelete={setIsDelete}
       />
       <AddBay
+        arrBay={data}
         numberOfBays={(data.props || {}).numberOfBays}
         visible={visible}
         onClose={() => setVisible(false)}

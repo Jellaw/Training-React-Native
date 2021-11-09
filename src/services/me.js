@@ -7,3 +7,7 @@ export const getMe = () => {
 export const changePassword = data => {
   return loggedInClient.post('/v1/me/change-password', data);
 };
+
+export const logout = deviceToken => {
+  return loggedInClient.post('/v1/me/sign-out', {deviceToken});
+};

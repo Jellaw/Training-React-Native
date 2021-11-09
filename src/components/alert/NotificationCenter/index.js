@@ -49,7 +49,7 @@ export const NotificationCenter = () => {
               backgroundColor: typeColor[type],
             },
           ]}>
-          <AppText style={styles.notiTitle} text={typeAlert[type]} />
+          <AppText style={styles.notiTitle} text={`${typeAlert[type]}: `} />
           <AppText style={styles.notiText} text={noti} />
         </View>
       )}

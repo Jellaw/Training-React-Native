@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1028739085844",
+    "project_id": "safe-t-device-ideabox",
+    "storage_bucket": "safe-t-device-ideabox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028739085844:android:58f960184ed8d83f0d9901",
+        "android_client_info": {
+          "package_name": "com.ideaboxtest.safet2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028739085844-66p9li0t4autg8eh3i23elb2t89oi781.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmAG9PWgqZSzQKcfrQEHBuQyJ8vYJ-WxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028739085844-66p9li0t4autg8eh3i23elb2t89oi781.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1028739085844-502c5gc58k4kud5cb22mks02fpbto6i4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ideaboxtest.safet2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

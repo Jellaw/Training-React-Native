@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup';
 import {Platform} from 'react-native';
 import {
@@ -24,9 +24,11 @@ import {
   deleteProjectDeviceLocation,
   updateProjectDeviceLocation,
 } from '~/store/project/actions';
+import ROLES from '~/constants/permissions';
 
 const AddBay = props => {
   const {
+    arrBay,
     numberOfBays,
     data,
     parentId,
@@ -50,6 +52,7 @@ const AddBay = props => {
     sibling.current = new RootSiblings(
       (
         <AddBayPopup
+          arrBay={arrBay}
           data={data || {}}
           parentId={parentId}
           projectId={projectId}
@@ -77,6 +80,7 @@ const AddBay = props => {
 const AddBayPopup = props => {
   const dispatch = useDispatch();
   const {
+    arrBay,
     numberOfBays,
     data,
     parentId,
@@ -87,19 +91,22 @@ const AddBayPopup = props => {
   } = props;
   const insets = useSafeAreaInsets();
   const [listBays, setListBays] = useState([]);
+  const {roles} = useSelector(state => state.me);
 
   const createListBays = () => {
     let arr = [];
-    [...Array(Number(numberOfBays)).keys()].map(
-      (i, index) =>
-        (arr = [
-          ...arr,
-          {
-            id: index + 1,
-            name: `Bay ${index + 1}`,
-          },
-        ]),
-    );
+    if (numberOfBays) {
+      [...Array(Number(numberOfBays)).keys()].map(
+        (i, index) =>
+          (arr = [
+            ...arr,
+            {
+              id: index + 1,
+              name: `Bay ${index + 1}`,
+            },
+          ]),
+      );
+    }
     setListBays(arr);
   };
   const popupHeight = React.useRef(Dimensions.get('window').height);
@@ -136,7 +143,20 @@ const AddBayPopup = props => {
 
   const renderContent = () => {
     const validationSchema = Yup.object().shape({
-      name: Yup.number().required().label('Bay Name'),
+      name: Yup.number()
+        .required()
+        .label('Bay Name')
+        .test(function (value) {
+          const {path, createError} = this;
+          if (
+            ((arrBay || {}).children || []).find(item => {
+              return item.name == value;
+            })
+          ) {
+            return createError({path, message: 'Duplicate Bay'});
+          }
+          return true;
+        }),
     });
 
     const handleSubmit = ({name}) => {
@@ -191,7 +211,7 @@ const AddBayPopup = props => {
         <View style={{paddingHorizontal: 10, marginTop: 10}}>
           <View>
             <Form
-              initialValues={{name: data.name || ''}}
+              initialValues={{name: (isEdit && data.name) || ''}}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}>
               <Text style={styles.inputLabel}>Bay</Text>
@@ -206,7 +226,7 @@ const AddBayPopup = props => {
                 name="name"
                 placeholder="Bay Name"
               /> */}
-              {isEdit && (
+              {roles.includes(ROLES.PROJECT_DELETE) && isEdit && (
                 <View style={{marginTop: 15, alignItems: 'flex-end'}}>
                   <TouchableOpacity
                     onPress={handleDelete}

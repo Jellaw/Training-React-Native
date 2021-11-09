@@ -1,10 +1,10 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {TextInput, View} from 'react-native';
 import colors from '~/assets/colors';
 import fonts from '~/assets/fonts';
 import MyIcon from '../MyIcon';
 import styles from './styles';
-import {debounce} from 'lodash';
+import {debounce} from '~/helpers/common';
 
 export const SearchBarBlock = props => {
   const {
@@ -17,12 +17,16 @@ export const SearchBarBlock = props => {
     ...rest
   } = props;
 
-  const doSearch = useCallback(
-    debounce(text => {
-      onSearch && onSearch(text);
-    }, delay),
-    [],
-  );
+  // const doSearch = useCallback(
+  //   debounce(text => {
+  //     onSearch && onSearch(text);
+  //   }, delay),
+  //   [],
+  // );
+
+  const doSearch = debounce(text => {
+    onSearch && onSearch(text);
+  }, delay);
 
   return (
     <View style={[styles.inputSearch, style]}>

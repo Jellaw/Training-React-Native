@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProjectScreen from '~/screens/ProjectScreen';
 import {TouchableOpacity} from 'react-native';
@@ -9,6 +10,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ContactScreen from '~/screens/ContactScreen';
 import BuildingDetail from '~/screens/ProjectScreen/building';
 import MyRoutes from './routes';
+import ROLES from '~/constants/permissions';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -52,6 +54,7 @@ const ProjectTab = () => {
 
 const TabBar = ({state, navigation}) => {
   const {routes} = state;
+  const {roles} = useSelector(state => state.me);
   return (
     <SafeAreaView
       style={{
@@ -91,10 +94,12 @@ const TabBar = ({state, navigation}) => {
                 return;
               }
               if (index === 2) {
-                navigation.navigate(MyRoutes.QRCODE);
+                roles.includes(ROLES.PROJECT_NODE_CHECK) &&
+                  navigation.navigate(MyRoutes.QRCODE);
                 return;
               }
-              navigation.navigate(route.name);
+              roles.includes(ROLES.CONTACT_GET_LIST) &&
+                navigation.navigate(route.name);
             }}
             key={route.key}
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

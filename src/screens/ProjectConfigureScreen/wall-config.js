@@ -17,6 +17,7 @@ import {
   setIsUpdateDeviceLocation,
 } from '~/store/project/actions';
 import {notification} from '~/components/alert/NotificationCenter';
+import ROLES from '~/constants/permissions';
 
 function WallConfig({navigation, route}) {
   const dispatch = useDispatch();
@@ -30,7 +31,8 @@ function WallConfig({navigation, route}) {
     isDeleteDeviceLocation,
   } = useSelector(state => state.project);
   const [wallVisible, setWallVisible] = useState(false);
-  const {wallId, projectId} = route.params;
+  const {arrWall, wallId, projectId} = route.params;
+  const {roles} = useSelector(state => state.me);
 
   useEffect(() => {
     getNodeInDeviceLocationTree(obj.deviceLocationTrees, wallId, obj =>
@@ -64,6 +66,14 @@ function WallConfig({navigation, route}) {
     }
   }, [isDeleteDeviceLocation]);
 
+  const arrLevelName = () => {
+    let arr = [];
+    ((data || {}).children || []).map(item => {
+      arr.push({name: item.name});
+    });
+    return arr;
+  };
+
   const renderLevelItem = (item, index) => {
     const count = data => {
       let countNode = 0;
@@ -76,6 +86,7 @@ function WallConfig({navigation, route}) {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(routes.PROJECT_LEVEL_CONFIG, {
+            arrLevel: {children: arrLevelName()},
             levelId: item.id,
             projectId: projectId,
           })
@@ -118,13 +129,15 @@ function WallConfig({navigation, route}) {
             <MyIcon name="arrow-left" size={18} color={colors.purple} />
           </TouchableOpacity>
           <View style={{flex: 1}} />
-          <TouchableOpacity
-            onPress={() => setVisible(true)}
-            style={styles.button}>
-            <Text style={{...fonts.type.bold(12, colors.purple)}}>
-              Add Level
-            </Text>
-          </TouchableOpacity>
+          {roles.includes(ROLES.PROJECT_CREATE) && (
+            <TouchableOpacity
+              onPress={() => setVisible(true)}
+              style={styles.button}>
+              <Text style={{...fonts.type.bold(12, colors.purple)}}>
+                Add Level
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </SafeAreaView>
     );
@@ -178,6 +191,7 @@ function WallConfig({navigation, route}) {
       {renderBottomBar()}
       <AddWall
         data={data}
+        arrWall={arrWall}
         projectId={projectId}
         visible={wallVisible}
         isEdit={true}
@@ -185,6 +199,7 @@ function WallConfig({navigation, route}) {
         setIsDelete={setIsDelete}
       />
       <AddLevel
+        arrLevel={data}
         visible={visible}
         onClose={() => setVisible(false)}
         projectId={projectId}

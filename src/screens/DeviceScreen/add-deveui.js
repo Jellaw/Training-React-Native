@@ -14,26 +14,21 @@ import colors from '~/assets/colors';
 import MyIcon from '~/components/MyIcon';
 import images from '~/assets/images';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {RNCamera} from 'react-native-camera';
 import {getCheckNode} from '~/store/node/actions';
 import {
   createProjectForceLink,
   getProjectDetail,
   setIsCreateProjectForceLink,
 } from '~/store/project/actions';
-import {isDevEui} from '~/helpers/common';
 import ROLES from '~/constants/permissions';
 
-function AddDevice({navigation, route}) {
+function AddDevEui({navigation, route}) {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  const [scanned, setScanned] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isDone, setIsDone] = useState(false);
   const [isDeviceRegistered, setIsDeviceRegistered] = useState(false);
   const [dataDevEui, setDataDevEui] = useState(false);
-  const [devEui, setDevEui] = useState('');
   const {isCreateProjectForceLink} = useSelector(state => state.project);
-  const [isDevEUI, setIsDevEUI] = useState(false);
   const {roles} = useSelector(state => state.me);
 
   const anim = useRef(new Animated.Value(0)).current;
@@ -41,7 +36,7 @@ function AddDevice({navigation, route}) {
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
-  const {projectId, deviceLocationTreeId} = route.params;
+  const {projectId, deviceLocationTreeId, devEui} = route.params;
 
   const animation = React.useRef(null);
 
@@ -53,6 +48,19 @@ function AddDevice({navigation, route}) {
       dispatch(getProjectDetail(projectId));
     }
   }, [isCreateProjectForceLink]);
+
+  useEffect(async () => {
+    const check = await getCheckNode({devEui: devEui});
+    if (check.projectId) {
+      setDataDevEui(check);
+      setIsDeviceRegistered(true);
+      await delay(2000);
+      return setLoading(false);
+    }
+    setIsDeviceRegistered(false);
+    await delay(2000);
+    return setLoading(false);
+  }, [devEui]);
 
   useEffect(() => {
     if (!animation.current) {
@@ -75,27 +83,6 @@ function AddDevice({navigation, route}) {
     }
   }, [loading]);
 
-  const onBarCodeScanned = async result => {
-    if (isDevEui(result.data)) {
-      setDevEui(result.data);
-      setIsDevEUI(false);
-      setLoading(true);
-      const check = await getCheckNode({devEui: result.data});
-      if (check.projectId) {
-        setDataDevEui(check);
-        setIsDeviceRegistered(true);
-        await delay(2000);
-        setLoading(false);
-        return setScanned(true);
-      }
-      setIsDeviceRegistered(false);
-      await delay(2000);
-      setLoading(false);
-      return setScanned(true);
-    }
-    setIsDevEUI(result.data);
-  };
-
   const onLinkDevice = async () => {
     setLoading(true);
     await delay(1000);
@@ -110,98 +97,6 @@ function AddDevice({navigation, route}) {
 
   const delay = interval => {
     return new Promise(res => setTimeout(res, interval));
-  };
-
-  const renderScan = () => {
-    return (
-      <View style={{flex: 1}}>
-        <View
-          style={{
-            marginTop: 20,
-            paddingHorizontal: 36,
-            flex: 1,
-          }}>
-          <View style={{alignItems: 'center'}}>
-            <Image source={images.logo} />
-            <Text style={{...fonts.type.bold(16), marginTop: 23}}>
-              Add Safe-T Device
-            </Text>
-            <Text
-              style={{
-                ...fonts.type.medium(16),
-                textAlign: 'center',
-                marginTop: 20,
-              }}>
-              Scan QR code on the Safe-T Device in order to link it to this
-              scaffolding bay.
-            </Text>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              marginTop: 60,
-              aspectRatio: 1,
-              borderRadius: 10,
-              overflow: 'hidden',
-            }}>
-            {loading ? (
-              <View
-                style={{
-                  backgroundColor: colors.mediumgrey,
-                  aspectRatio: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                <Animated.View style={{transform: [{rotate: rotate}]}}>
-                  <MyIcon name="sync-alt" size={70} color="black" light />
-                </Animated.View>
-                <Text style={{...fonts.type.medium(16), marginTop: 20}}>
-                  Please wait…
-                </Text>
-              </View>
-            ) : (
-              <>
-                <RNCamera
-                  onBarCodeRead={onBarCodeScanned}
-                  captureAudio={false}
-                  style={{flex: 1}}
-                />
-                <Text
-                  style={{
-                    ...fonts.type.base(14, colors.red),
-                    position: 'absolute',
-                    bottom: 20,
-                    left: 0,
-                    right: 0,
-                    textAlign: 'center',
-                  }}>
-                  Scan New Device
-                </Text>
-              </>
-            )}
-          </View>
-          {isDevEUI && (
-            <Text
-              style={{
-                ...fonts.type.base(18, colors.red),
-                marginTop: 20,
-                textAlign: 'center',
-              }}>
-              {isDevEUI} is not Device
-            </Text>
-          )}
-        </View>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={{
-            height: 45,
-            alignItems: 'center',
-            paddingTop: 16,
-          }}>
-          <Text style={{...fonts.type.bold(16, colors.purple)}}>Close</Text>
-        </TouchableOpacity>
-      </View>
-    );
   };
 
   const renderScanned = () => {
@@ -455,7 +350,7 @@ function AddDevice({navigation, route}) {
                 alignItems: 'center',
                 paddingTop: 16,
               }}>
-              <Text style={{...fonts.type.bold(16, colors.white)}}>Close</Text>
+              <Text style={{...fonts.type.bold(16, 'white')}}>Close</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -504,9 +399,28 @@ function AddDevice({navigation, route}) {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      {isDone ? renderDone() : scanned ? renderScanned() : renderScan()}
+      {loading ? (
+        <View
+          style={{
+            height: '100%',
+            backgroundColor: colors.mediumgrey,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Animated.View style={{transform: [{rotate: rotate}]}}>
+            <MyIcon name="sync-alt" size={70} color="black" light />
+          </Animated.View>
+          <Text style={{...fonts.type.medium(16), marginTop: 20}}>
+            Please wait…
+          </Text>
+        </View>
+      ) : isDone ? (
+        renderDone()
+      ) : (
+        renderScanned()
+      )}
     </SafeAreaView>
   );
 }
 
-export default AddDevice;
+export default AddDevEui;

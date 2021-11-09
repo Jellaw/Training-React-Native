@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup';
 import {Platform} from 'react-native';
 import {
@@ -23,9 +23,11 @@ import {
   deleteProjectDeviceLocation,
   updateProjectDeviceLocation,
 } from '~/store/project/actions';
+import ROLES from '~/constants/permissions';
 
 const AddLevel = props => {
   const {
+    arrLevel,
     data,
     parentId,
     projectId,
@@ -48,6 +50,7 @@ const AddLevel = props => {
     sibling.current = new RootSiblings(
       (
         <AddLevelPopup
+          arrLevel={arrLevel}
           data={data || {}}
           parentId={parentId}
           projectId={projectId}
@@ -73,8 +76,10 @@ const AddLevel = props => {
 
 const AddLevelPopup = props => {
   const dispatch = useDispatch();
-  const {data, parentId, projectId, onClose, isEdit, setIsDelete} = props;
+  const {arrLevel, data, parentId, projectId, onClose, isEdit, setIsDelete} =
+    props;
   const insets = useSafeAreaInsets();
+  const {roles} = useSelector(state => state.me);
 
   const popupHeight = React.useRef(Dimensions.get('window').height);
   const anim = React.useRef(new Animated.Value(0));
@@ -109,10 +114,27 @@ const AddLevelPopup = props => {
 
   const renderContent = () => {
     const validationSchema = Yup.object().shape({
-      name: Yup.number().required().label('Level Name'),
-      numberOfBays: !isEdit
-        ? Yup.number().required().label('Number of Scaffolding Bays')
-        : undefined,
+      name: Yup.number()
+        .typeError("Level Name must be a 'number' type")
+        .min(1)
+        .required()
+        .test(function (value) {
+          const {path, createError} = this;
+          if (
+            ((arrLevel || {}).children || []).find(item => {
+              return item.name == value;
+            }) &&
+            data.name != value
+          ) {
+            return createError({path, message: 'Duplicate Level'});
+          }
+          return true;
+        })
+        .label('Level Name'),
+      numberOfBays: Yup.number()
+        .min(1)
+        .required()
+        .label('Number of Scaffolding Bays'),
     });
 
     const handleSubmit = ({name, numberOfBays}) => {
@@ -170,7 +192,7 @@ const AddLevelPopup = props => {
           <View>
             <Form
               initialValues={{
-                name: data.name || '',
+                name: (isEdit && data.name) || '',
                 numberOfBays: (data.props || {}).numberOfBays || '',
               }}
               validationSchema={validationSchema}
@@ -189,7 +211,7 @@ const AddLevelPopup = props => {
                 name="numberOfBays"
                 placeholder="Number of Scaffolding Bays"
               />
-              {isEdit && (
+              {roles.includes(ROLES.PROJECT_DELETE) && isEdit && (
                 <View style={{marginTop: 15, alignItems: 'flex-end'}}>
                   <TouchableOpacity
                     onPress={handleDelete}

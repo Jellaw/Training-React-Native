@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as Yup from 'yup';
 import {Platform} from 'react-native';
 import {
@@ -23,9 +23,11 @@ import {
   deleteProjectDeviceLocation,
   updateProjectDeviceLocation,
 } from '~/store/project/actions';
+import ROLES from '~/constants/permissions';
 
 const AddWall = props => {
   const {
+    arrWall,
     data,
     parentId,
     projectId,
@@ -48,6 +50,7 @@ const AddWall = props => {
     sibling.current = new RootSiblings(
       (
         <AddWallPopup
+          arrWall={arrWall}
           data={data || {}}
           parentId={parentId}
           projectId={projectId}
@@ -73,8 +76,10 @@ const AddWall = props => {
 
 const AddWallPopup = props => {
   const dispatch = useDispatch();
-  const {data, parentId, projectId, onClose, isEdit, setIsDelete} = props;
+  const {arrWall, data, parentId, projectId, onClose, isEdit, setIsDelete} =
+    props;
   const insets = useSafeAreaInsets();
+  const {roles} = useSelector(state => state.me);
 
   const popupHeight = React.useRef(Dimensions.get('window').height);
   const anim = React.useRef(new Animated.Value(0));
@@ -109,7 +114,20 @@ const AddWallPopup = props => {
 
   const renderContent = () => {
     const validationSchema = Yup.object().shape({
-      name: Yup.string().required().label('Wall Name'),
+      name: Yup.string()
+        .required()
+        .test(function (value) {
+          const {path, createError} = this;
+          if (
+            ((arrWall || {}).children || []).find(item => {
+              return item.name == value;
+            })
+          ) {
+            return createError({path, message: 'Duplicate Wall'});
+          }
+          return true;
+        })
+        .label('Wall Name'),
     });
 
     const handleSubmit = ({name}) => {
@@ -164,7 +182,7 @@ const AddWallPopup = props => {
         <View style={{paddingHorizontal: 10, marginTop: 10}}>
           <View>
             <Form
-              initialValues={{name: data.name || ''}}
+              initialValues={{name: (isEdit && data.name) || ''}}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}>
               <Text style={styles.inputLabel}>Wall Name</Text>
@@ -174,7 +192,7 @@ const AddWallPopup = props => {
                 name="name"
                 placeholder="Wall Name"
               />
-              {isEdit && (
+              {roles.includes(ROLES.PROJECT_DELETE) && isEdit && (
                 <View style={{marginTop: 15, alignItems: 'flex-end'}}>
                   <TouchableOpacity
                     onPress={handleDelete}

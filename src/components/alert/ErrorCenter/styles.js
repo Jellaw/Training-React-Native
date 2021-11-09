@@ -1,18 +1,19 @@
 import PlatformStyleSheet from '~/helpers/PlatformStyleSheet';
 import colors from '~/assets/colors';
+import {screenWidth} from '~/config/commonStyle';
 
 export default PlatformStyleSheet.create({
   errorBody: {
     minHeight: 50,
     backgroundColor: 'orange',
-    width: 250,
+    width: screenWidth,
+    justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 10,
     position: 'absolute',
-    zIndex: 2,
+    zIndex: 99,
+    bottom: 0,
     flexDirection: 'row',
-    right: 0,
-    top: 10,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
   },

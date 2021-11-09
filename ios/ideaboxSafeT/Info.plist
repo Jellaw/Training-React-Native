@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>App needs use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Regular.ttf</string>
@@ -99,11 +99,19 @@
 		<string>Font Awesome 6 Pro-Solid-900.otf</string>
 		<string>Font Awesome 6 Pro-Thin-100.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>  
+	<array>
+		<string>Light</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

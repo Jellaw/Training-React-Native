@@ -1,5 +1,5 @@
-import React from 'react';
-import {} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 import {View, ScrollView, TouchableOpacity, Text} from 'react-native';
 import colors from '~/assets/colors';
 import fonts from '~/assets/fonts';
@@ -11,6 +11,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import routes from '~/navigation/routes';
 import {LayoutAnimation} from 'react-native';
 import {NODE_STATUS} from '~/constants/masterData';
+import ROLES from '~/constants/permissions';
+import {getNodeInDeviceLocationTree} from '~/helpers/common';
 
 const tagStyle = color => ({
   height: 16,
@@ -24,13 +26,36 @@ const tagStyle = color => ({
 function BuildingDetail(props) {
   const {navigation, route} = props;
   const [isList, setIsList] = React.useState(true);
+  const [currentWall, setCurrentWall] = React.useState(null);
   const [currentNode, setCurrentNode] = React.useState(null);
   const [selectedItems, setSelectedItems] = React.useState([]);
-  const {building, projectName} = route.params || {};
+  const {building, projectName, buildingId, wallId, levelName, bayName} =
+    route.params || {};
+  const {roles} = useSelector(state => state.me);
+  const {obj} = useSelector(state => state.project);
+  const [buildingData, setBuildingData] = useState({});
 
-  const onNodePress = node => {
+  useEffect(() => {
+    if (buildingId) {
+      getNodeInDeviceLocationTree(obj.deviceLocationTrees, buildingId, obj =>
+        setBuildingData(obj),
+      );
+      onNodePress(
+        currentWall || wallId,
+        `${currentWall || wallId}-${levelName}-${bayName}`,
+      );
+      return;
+    }
+    getNodeInDeviceLocationTree(obj.deviceLocationTrees, building.id, obj =>
+      setBuildingData(obj),
+    );
+  }, [obj, buildingId]);
+
+  const onNodePress = (wallId, node) => {
+    setCurrentWall(wallId);
     setCurrentNode(node);
     setIsList(false);
+    setSelectedItems([wallId]);
   };
 
   const onWallToggle = wall => {
@@ -70,22 +95,22 @@ function BuildingDetail(props) {
         {renderTag(
           'Alert',
           colors.red,
-          (building.statusCounter || {})[NODE_STATUS.ALERT] || 0,
+          ((buildingData || {}).statusCounter || {})[NODE_STATUS.ALERT] || 0,
         )}
         {renderTag(
           'Check',
           colors.orange,
-          (building.statusCounter || {})[NODE_STATUS.CHECK] || 0,
+          ((buildingData || {}).statusCounter || {})[NODE_STATUS.CHECK] || 0,
         )}
         {renderTag(
           'Pause',
           colors.darkgrey,
-          (building.statusCounter || {})[NODE_STATUS.PAUSE] || 0,
+          ((buildingData || {}).statusCounter || {})[NODE_STATUS.PAUSE] || 0,
         )}
         {renderTag(
           'Active',
           colors.green,
-          (building.statusCounter || {})[NODE_STATUS.ACTIVE] || 0,
+          ((buildingData || {}).statusCounter || {})[NODE_STATUS.ACTIVE] || 0,
         )}
       </View>
     );
@@ -120,10 +145,13 @@ function BuildingDetail(props) {
             light
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <MyIcon name="qrcode" size={24} color={colors.grey} light />
-        </TouchableOpacity>
+        {roles.includes(ROLES.PROJECT_NODE_CHECK) && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routes.QRCODE)}
+            style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <MyIcon name="qrcode" size={24} color={colors.grey} light />
+          </TouchableOpacity>
+        )}
       </View>
     );
   };
@@ -132,23 +160,25 @@ function BuildingDetail(props) {
     <SafeAreaView style={{flex: 1}}>
       <SafeAreaView
         style={{position: 'absolute', right: 16, top: 0, zIndex: 9999}}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(routes.PROJECT_CONFIG)}
-          style={{
-            width: 40,
-            height: 40,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <MyIcon name="edit" size={20} color={colors.purple} />
-        </TouchableOpacity>
+        {roles.includes(ROLES.PROJECT_UPDATE) && (
+          <TouchableOpacity
+            onPress={() => navigation.navigate(routes.PROJECT_CONFIG)}
+            style={{
+              width: 40,
+              height: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <MyIcon name="edit" size={20} color={colors.purple} />
+          </TouchableOpacity>
+        )}
       </SafeAreaView>
       <View style={{paddingHorizontal: 16, marginTop: 20}}>
         <Text style={{...fonts.type.medium(12, colors.grey)}}>
           {projectName}
         </Text>
         <Text style={{...fonts.type.bold(34), marginTop: 8, marginBottom: 10}}>
-          {building.name}
+          {(buildingData || {}).name}
         </Text>
         <View style={styles.row}>
           <View style={{...styles.row, flex: 1}}>
@@ -186,15 +216,18 @@ function BuildingDetail(props) {
         {renderStatus()}
         {isList ? (
           <ProjectList
-            data={building.children || []}
+            projectName={projectName}
+            data={(buildingData || {}).children || []}
             selectedItems={selectedItems}
             onNodePress={onNodePress}
             onWallToggle={onWallToggle}
           />
         ) : (
           <ProjectScaffolding
-            data={building.children || []}
+            data={(buildingData || {}).children || []}
             selectedItems={selectedItems}
+            currentWall={currentWall}
+            setCurrentWall={setCurrentWall}
             currentNode={currentNode}
             onWallToggle={onWallToggle}
           />

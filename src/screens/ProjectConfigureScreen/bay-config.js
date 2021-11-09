@@ -23,6 +23,7 @@ import {DEVICE_LOCATION_TREE_SIDE_NAME} from '~/constants/masterData';
 import {isEmpty} from 'validate.js';
 import {notification} from '~/components/alert/NotificationCenter';
 import {Popup} from '~/components/popup';
+import ROLES from '~/constants/permissions';
 
 function BayConfig({navigation, route}) {
   const dispatch = useDispatch();
@@ -33,7 +34,8 @@ function BayConfig({navigation, route}) {
   const [visibleSide, setVisibleSide] = useState(false);
   const [visibleAccuracy, setVisibleAccuracy] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
-  const ttnApplicationList = useSelector(state => state.ttnApplication.data);
+  const {roles} = useSelector(state => state.me);
+
   const shortSide = () => {
     let side = {};
     (data.children || []).map(item => {
@@ -47,10 +49,11 @@ function BayConfig({navigation, route}) {
     isUpdateDeviceLocation,
     isDeleteDeviceLocation,
   } = useSelector(state => state.project);
-  const {bayId, projectId, numberOfBays} = route.params;
+  const {arrBay, bayId, projectId, numberOfBays} = route.params;
 
   useEffect(() => {
-    dispatch(getTtnAplicationList({meta: {pageSize: 10000}}));
+    roles.includes(ROLES.TTN_APPLICATION_GET_LIST) &&
+      dispatch(getTtnAplicationList({meta: {pageSize: 10000}}));
   }, []);
 
   useEffect(() => {
@@ -65,7 +68,7 @@ function BayConfig({navigation, route}) {
 
   useEffect(() => {
     if (isCreateDeviceLocation) {
-      notification('SUCCESS', 'Create side successful');
+      notification('', '');
       dispatch(setIsCreateDeviceLocation(false));
       dispatch(getProjectDetail(projectId));
     }
@@ -136,153 +139,137 @@ function BayConfig({navigation, route}) {
         <View>
           <Text style={styles.inputLabel}>Left</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{
-                flex: 1,
-                padding: 13,
-                ...styles.textInput,
-              }}>
-              {!isEmpty(
-                (side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT] || {}).projectNodes,
-              )
-                ? side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT].projectNodes[0]
-                    .devEui
-                : ''}
-            </Text>
             <TouchableOpacity
-              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.LEFT)}
-              style={{
-                ...styles.smallBtn,
-              }}>
-              <MyIcon name="edit" size={16} color={colors.grey} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                openScan(
-                  side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT],
-                  DEVICE_LOCATION_TREE_SIDE_NAME.LEFT,
+              style={{flex: 1}}
+              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.LEFT)}>
+              <Text
+                style={{
+                  padding: 13,
+                  ...styles.textInput,
+                }}>
+                {!isEmpty(
+                  (side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT] || {})
+                    .projectNodes,
                 )
-              }
-              style={{...styles.smallBtn}}>
-              <MyIcon name="qrcode" size={18} color={colors.purple} />
-              {/* <Text style={{...fonts.type.base(14, colors.red), marginTop: 3}}>
-                New
-              </Text> */}
+                  ? side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT].projectNodes[0]
+                      .devEui
+                  : ''}
+              </Text>
             </TouchableOpacity>
+            {roles.includes(ROLES.PROJECT_CREATE) && (
+              <TouchableOpacity
+                onPress={() =>
+                  openScan(
+                    side[DEVICE_LOCATION_TREE_SIDE_NAME.LEFT],
+                    DEVICE_LOCATION_TREE_SIDE_NAME.LEFT,
+                  )
+                }
+                style={{...styles.smallBtn}}>
+                <MyIcon name="qrcode" size={18} color={colors.purple} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
         <View>
           <Text style={styles.inputLabel}>Right</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{
-                flex: 1,
-                padding: 13,
-                ...styles.textInput,
-              }}>
-              {!isEmpty(
-                (side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT] || {}).projectNodes,
-              )
-                ? side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT].projectNodes[0]
-                    .devEui
-                : ''}
-            </Text>
             <TouchableOpacity
-              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT)}
-              style={{
-                ...styles.smallBtn,
-              }}>
-              <MyIcon name="edit" size={16} color={colors.grey} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                openScan(
-                  side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT],
-                  DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT,
+              style={{flex: 1}}
+              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT)}>
+              <Text
+                style={{
+                  padding: 13,
+                  ...styles.textInput,
+                }}>
+                {!isEmpty(
+                  (side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT] || {})
+                    .projectNodes,
                 )
-              }
-              style={{...styles.smallBtn}}>
-              <MyIcon name="qrcode" size={18} color={colors.purple} />
-              {/* <Text style={{...fonts.type.base(14, colors.red), marginTop: 3}}>
-                New
-              </Text> */}
+                  ? side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT].projectNodes[0]
+                      .devEui
+                  : ''}
+              </Text>
             </TouchableOpacity>
+            {roles.includes(ROLES.PROJECT_CREATE) && (
+              <TouchableOpacity
+                onPress={() =>
+                  openScan(
+                    side[DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT],
+                    DEVICE_LOCATION_TREE_SIDE_NAME.RIGHT,
+                  )
+                }
+                style={{...styles.smallBtn}}>
+                <MyIcon name="qrcode" size={18} color={colors.purple} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
         <View>
           <Text style={styles.inputLabel}>Back</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{
-                flex: 1,
-                padding: 13,
-                ...styles.textInput,
-              }}>
-              {!isEmpty(
-                (side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK] || {}).projectNodes,
-              )
-                ? side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK].projectNodes[0]
-                    .devEui
-                : ''}
-            </Text>
             <TouchableOpacity
-              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.BACK)}
-              style={{
-                ...styles.smallBtn,
-              }}>
-              <MyIcon name="edit" size={16} color={colors.grey} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                openScan(
-                  side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK],
-                  DEVICE_LOCATION_TREE_SIDE_NAME.BACK,
+              style={{flex: 1}}
+              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.BACK)}>
+              <Text
+                style={{
+                  padding: 13,
+                  ...styles.textInput,
+                }}>
+                {!isEmpty(
+                  (side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK] || {})
+                    .projectNodes,
                 )
-              }
-              style={{...styles.smallBtn}}>
-              <MyIcon name="qrcode" size={18} color={colors.purple} />
-              {/* <Text style={{...fonts.type.base(14, colors.red), marginTop: 3}}>
-                New
-              </Text> */}
+                  ? side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK].projectNodes[0]
+                      .devEui
+                  : ''}
+              </Text>
             </TouchableOpacity>
+            {roles.includes(ROLES.PROJECT_CREATE) && (
+              <TouchableOpacity
+                onPress={() =>
+                  openScan(
+                    side[DEVICE_LOCATION_TREE_SIDE_NAME.BACK],
+                    DEVICE_LOCATION_TREE_SIDE_NAME.BACK,
+                  )
+                }
+                style={{...styles.smallBtn}}>
+                <MyIcon name="qrcode" size={18} color={colors.purple} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
         <View style={{marginBottom: 24}}>
           <Text style={styles.inputLabel}>Wall</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text
-              style={{
-                flex: 1,
-                padding: 13,
-                ...styles.textInput,
-              }}>
-              {!isEmpty(
-                (side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL] || {}).projectNodes,
-              )
-                ? side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL].projectNodes[0]
-                    .devEui
-                : ''}
-            </Text>
             <TouchableOpacity
-              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.WALL)}
-              style={{
-                ...styles.smallBtn,
-              }}>
-              <MyIcon name="edit" size={16} color={colors.grey} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                openScan(
-                  side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL],
-                  DEVICE_LOCATION_TREE_SIDE_NAME.WALL,
+              style={{flex: 1}}
+              onPress={() => openAddSide(DEVICE_LOCATION_TREE_SIDE_NAME.WALL)}>
+              <Text
+                style={{
+                  padding: 13,
+                  ...styles.textInput,
+                }}>
+                {!isEmpty(
+                  (side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL] || {})
+                    .projectNodes,
                 )
-              }
-              style={{...styles.smallBtn}}>
-              <MyIcon name="qrcode" size={18} color={colors.purple} />
-              {/* <Text style={{...fonts.type.base(14, colors.red), marginTop: 3}}>
-                New
-              </Text> */}
+                  ? side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL].projectNodes[0]
+                      .devEui
+                  : ''}
+              </Text>
             </TouchableOpacity>
+            {roles.includes(ROLES.PROJECT_CREATE) && (
+              <TouchableOpacity
+                onPress={() =>
+                  openScan(
+                    side[DEVICE_LOCATION_TREE_SIDE_NAME.WALL],
+                    DEVICE_LOCATION_TREE_SIDE_NAME.WALL,
+                  )
+                }
+                style={{...styles.smallBtn}}>
+                <MyIcon name="qrcode" size={18} color={colors.purple} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
@@ -366,6 +353,7 @@ function BayConfig({navigation, route}) {
       {renderBottomBar()}
       <AddBay
         data={data}
+        arrBay={arrBay}
         visible={visible}
         onClose={() => setVisible(false)}
         numberOfBays={numberOfBays}
@@ -374,8 +362,8 @@ function BayConfig({navigation, route}) {
         setIsDelete={setIsDelete}
       />
       <AddSide
+        navigation={navigation}
         nameSide={nameSide}
-        ttnApplicationList={ttnApplicationList}
         visible={visibleSide}
         onClose={() => setVisibleSide(false)}
         projectId={projectId}

@@ -30,11 +30,21 @@ const shortBay = item => {
   const arr = [];
   (item.children || []).map(level =>
     (level.children || []).map(bay => {
-      (bay.children || []).filter(item =>
+      (bay.children || []).filter(node =>
         arr.push({
-          name: bay.name + ' (' + item.name + ')',
-          status: !isEmpty(item.projectNodes)
-            ? item.projectNodes[0].status
+          isDevices: !isEmpty(node.projectNodes)
+            ? node.projectNodes[0].devEui
+            : false,
+          projectId: item.projectId,
+          buildingId: item.parentId,
+          wallId: item.id,
+          levelName: level.name,
+          bayName: bay.name,
+          node: `${item.id}-${level.name}-${bay.name}`,
+          name:
+            'Level ' + level.name + ' Bay ' + bay.name + ' (' + node.name + ')',
+          status: !isEmpty(node.projectNodes)
+            ? node.projectNodes[0].status
             : '',
         }),
       );
@@ -44,13 +54,17 @@ const shortBay = item => {
 };
 
 function WallItem(props) {
-  const {item, onPress, onToggle, isExpand} = props;
+  const {projectName, item, onPress, onToggle, isExpand} = props;
   // const [filter, setFilter] = React.useState(0);
   const navigation = useNavigation();
   const bay = shortBay(item) || [];
 
   const onViewAll = () => {
-    navigation.navigate(routes.BUILDING_NODES, {data: bay, name: item.name});
+    navigation.navigate(routes.BUILDING_NODES, {
+      data: bay,
+      projectName: projectName,
+      name: item.name,
+    });
   };
 
   // const onChangeFilter = filter => {
@@ -117,32 +131,39 @@ function WallItem(props) {
   const renderNodeItem = (item, index) => {
     if (index > 2) return;
     return (
-      <TouchableOpacity
-        onPress={() => {
-          onPress && onPress(item);
-        }}
-        key={index.toString()}
-        style={{flexDirection: 'row', alignItems: 'center', height: 50}}>
-        {item.status == NODE_STATUS.ACTIVE && (
-          <View style={{...dot(colors.green, 8, 3), marginRight: 10}} />
-        )}
-        {item.status == NODE_STATUS.ALERT && (
-          <View style={{...dot(colors.red, 8, 3), marginRight: 10}} />
-        )}
-        {item.status == NODE_STATUS.PAUSE && (
-          <View style={{...dot(colors.grey, 8, 3), marginRight: 10}} />
-        )}
-        {item.status == NODE_STATUS.CHECK && (
-          <View style={{...dot(colors.orange, 8, 3), marginRight: 10}} />
-        )}
-        <Text style={{...fonts.type.base(15), flex: 1}}>{item.name}</Text>
-        {/* <TouchableOpacity style={{...styles.smallBtn}}>
+      item.isDevices &&
+      item.status !== null && (
+        <TouchableOpacity
+          onPress={() => {
+            onPress && onPress(item.wallId, item.node);
+          }}
+          key={index.toString()}
+          style={{flexDirection: 'row', alignItems: 'center', height: 50}}>
+          {Number(item.status) === NODE_STATUS.ACTIVE && (
+            <View style={{...dot(colors.green, 8, 3), marginRight: 10}} />
+          )}
+          {Number(item.status) == NODE_STATUS.ALERT && (
+            <View style={{...dot(colors.red, 8, 3), marginRight: 10}} />
+          )}
+          {Number(item.status) === NODE_STATUS.PAUSE && (
+            <View style={{...dot(colors.grey, 8, 3), marginRight: 10}} />
+          )}
+          {Number(item.status) === NODE_STATUS.CHECK && (
+            <View style={{...dot(colors.orange, 8, 3), marginRight: 10}} />
+          )}
+          <Text style={{...fonts.type.base(15), flex: 1}}>{item.name}</Text>
+          {/* <TouchableOpacity style={{...styles.smallBtn}}>
           <MyIcon name="qrcode" size={20} color={colors.purple} />
         </TouchableOpacity> */}
-        <TouchableOpacity style={{...styles.smallBtn}}>
-          <MyIcon name="angle-right" size={20} color={colors.purple} />
+          <TouchableOpacity
+            onPress={() => {
+              onPress && onPress(item.wallId, item.node);
+            }}
+            style={{...styles.smallBtn}}>
+            <MyIcon name="angle-right" size={20} color={colors.purple} />
+          </TouchableOpacity>
         </TouchableOpacity>
-      </TouchableOpacity>
+      )
     );
   };
 

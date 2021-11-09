@@ -22,6 +22,7 @@ import {
 import {getCompanyList} from '~/store/company/actions';
 import {notification} from '~/components/alert/NotificationCenter';
 import {getTtnAplicationList} from '~/store/ttn-application/actions';
+import ROLES from '~/constants/permissions';
 
 function DashboardScreen({navigation}) {
   const dispatch = useDispatch();
@@ -29,18 +30,23 @@ function DashboardScreen({navigation}) {
   const [visible, setVisible] = useState(false);
   const [filterVisible, setFilterVisible] = useState(false);
   const {data, overView, isCreate} = useSelector(state => state.project);
+  const {roles} = useSelector(state => state.me);
 
   useEffect(() => {
-    dispatch(getProjectList({meta: {pageSize: 10000}}));
-    dispatch(getCompanyList({meta: {pageSize: 10000}}));
-    dispatch(getTtnAplicationList({meta: {pageSize: 10000}}));
-  }, []);
+    roles.includes(ROLES.PROJECT_GET_LIST) &&
+      dispatch(getProjectList({meta: {pageSize: 10000}}));
+    roles.includes(ROLES.COMPANY_GET_LIST) &&
+      dispatch(getCompanyList({meta: {pageSize: 10000}}));
+    roles.includes(ROLES.TTN_APPLICATION_GET_LIST) &&
+      dispatch(getTtnAplicationList({meta: {pageSize: 10000}}));
+  }, [roles]);
 
   useEffect(() => {
     if (isCreate) {
       notification('SUCCESS', 'Create project successful');
       dispatch(setIsCreate(false));
-      dispatch(getProjectList({meta: {pageSize: 10000}}));
+      roles.includes(ROLES.PROJECT_GET_LIST) &&
+        dispatch(getProjectList({meta: {pageSize: 10000}}));
     }
   }, [isCreate]);
 
@@ -49,13 +55,15 @@ function DashboardScreen({navigation}) {
   };
 
   const handleGoToProjectDetail = id => {
-    dispatch(getProjectDetail(id));
-    dispatch(getProjectContactList(id));
+    roles.includes(ROLES.PROJECT_GET) && dispatch(getProjectDetail(id));
+    roles.includes(ROLES.CONTACT_GET_LIST) &&
+      dispatch(getProjectContactList(id));
     navigation.navigate(routes.PROJECT);
   };
 
   const submitFilter = type => {
-    dispatch(getProjectList({meta: {pageSize: 10000}, status: {eq: type}}));
+    roles.includes(ROLES.PROJECT_GET_LIST) &&
+      dispatch(getProjectList({meta: {pageSize: 10000}, status: {eq: type}}));
   };
 
   const renderTopBar = () => {
@@ -77,21 +85,25 @@ function DashboardScreen({navigation}) {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <TouchableOpacity
-            onPress={() => setVisible(true)}
-            style={{
-              width: 40,
-              height: 40,
-              alignItems: 'flex-end',
-              marginRight: 10,
-            }}>
-            <MyIcon name="plus" size={20} color={colors.purple} light />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(routes.QRCODE)}
-            style={{width: 40, height: 40, alignItems: 'flex-end'}}>
-            <MyIcon name="qrcode" size={20} color={colors.purple} />
-          </TouchableOpacity>
+          {roles.includes(ROLES.PROJECT_CREATE) && (
+            <TouchableOpacity
+              onPress={() => setVisible(true)}
+              style={{
+                width: 40,
+                height: 40,
+                alignItems: 'flex-end',
+                marginRight: 10,
+              }}>
+              <MyIcon name="plus" size={20} color={colors.purple} light />
+            </TouchableOpacity>
+          )}
+          {roles.includes(ROLES.PROJECT_NODE_CHECK) && (
+            <TouchableOpacity
+              onPress={() => navigation.navigate(routes.QRCODE)}
+              style={{width: 40, height: 40, alignItems: 'flex-end'}}>
+              <MyIcon name="qrcode" size={20} color={colors.purple} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );
@@ -135,7 +147,10 @@ function DashboardScreen({navigation}) {
           contentContainerStyle={{paddingVertical: 24, paddingHorizontal: 16}}>
           {(data || []).map((item, index) => (
             <ListProject
-              onPress={() => handleGoToProjectDetail(item.id)}
+              onPress={() =>
+                roles.includes(ROLES.PROJECT_GET) &&
+                handleGoToProjectDetail(item.id)
+              }
               key={index}
               data={item}
               style={styles.boxList}

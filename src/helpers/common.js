@@ -1,4 +1,20 @@
 import _ from 'lodash';
+export function debounce(func, wait, immediate) {
+  var timeout;
+  return function () {
+    var context = this,
+      args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
+
 export const shortTreeArray = (
   treeArr = [],
   childrenType,
@@ -36,6 +52,6 @@ export const getNodeInDeviceLocationTree = (treeArr, id, callback) => {
   }
   return false;
 };
-export const isHexadecimal = str => /[0-9A-F]{6}/g.test(str);
+export const isHexadecimal = str => /^[0-9A-Fa-f]{16}\b/.test(str);
 export const isDevEui = str =>
   _.isString(str) && isHexadecimal(str) && str.length === 16;

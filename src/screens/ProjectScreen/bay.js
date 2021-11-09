@@ -8,6 +8,7 @@ const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const ALERT_STATUS = 'ALERT';
 const PAUSE_STATUS = 'PAUSE';
 const CHECK_STATUS = 'CHECK';
+const ACTIVE_STATUS = 'ACTIVE';
 const ScaffoldingBay = props => {
   const [color, setColor] = useState(colors.green);
   const {item, isShow, isSelect, onPress} = props;
@@ -16,7 +17,8 @@ const ScaffoldingBay = props => {
     if (item.status == ALERT_STATUS) return setColor(colors.red);
     if (item.status == PAUSE_STATUS) return setColor(colors.grey);
     if (item.status == CHECK_STATUS) return setColor(colors.orange);
-    return setColor(colors.green);
+    if (item.status == ACTIVE_STATUS) return setColor(colors.green);
+    return setColor('');
   }, []);
 
   const anim = React.useRef(new Animated.Value(0));

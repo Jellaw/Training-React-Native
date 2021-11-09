@@ -18,6 +18,7 @@ export default PlatformStyleSheet.create({
   },
   input: {
     // padding: 15,
+    color: '#000000',
     height: '100%',
     width: '90%',
   },

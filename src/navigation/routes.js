@@ -22,4 +22,5 @@ export default Object.freeze({
   QRCODE: 'Qrcode',
   DEVICE_DETAIL: 'DeviceDetail',
   ADD_DEVICE: 'AddDevice',
+  ADD_DEVEUI: 'AddDevEui',
 });

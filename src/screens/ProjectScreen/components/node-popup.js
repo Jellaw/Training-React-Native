@@ -1,14 +1,32 @@
 import React from 'react';
 import {Animated, Easing, Text, TouchableOpacity, View} from 'react-native';
 import RootSiblings from 'react-native-root-siblings';
-import colors from '~/assets/colors';
 import fonts from '~/assets/fonts';
 import MyIcon from '~/components/MyIcon';
-import {DeviceState} from '~/screens/DeviceScreen/utils';
+import {NODE_STATUS} from '~/constants/masterData';
+import {getDeviceColor} from '~/screens/DeviceScreen/utils';
+
+const getDeviceStateIcon = status => {
+  if (status === null) {
+    return 'pause-circle';
+  }
+  switch (Number(status)) {
+    case NODE_STATUS.ALERT:
+      return 'bell';
+    case NODE_STATUS.ACTIVE:
+      return 'router';
+    case NODE_STATUS.CHECK:
+      return 'router';
+    case NODE_STATUS.PAUSE:
+      return 'pause-circle';
+    default:
+      return 'question-circle';
+  }
+};
 
 const NodePopup = props => {
-  const {visible, onClose, onChoose} = props;
-
+  const {visible, data, location, onClose, onChoose} = props;
+  const projectNodes = data.projectNodes || {};
   const sibling = React.useRef(null);
 
   React.useEffect(() => {
@@ -21,6 +39,8 @@ const NodePopup = props => {
     sibling.current = new RootSiblings(
       (
         <NodePopupContent
+          projectNodes={projectNodes}
+          location={location}
           onClose={() => {
             sibling.current?.destroy();
             sibling.current = null;
@@ -40,7 +60,7 @@ const NodePopup = props => {
 };
 
 const NodePopupContent = props => {
-  const {onClose, onChoose} = props;
+  const {onClose, onChoose, projectNodes, location} = props;
 
   const anim = React.useRef(new Animated.Value(0));
   const fade = anim.current.interpolate({
@@ -61,14 +81,14 @@ const NodePopupContent = props => {
     }).start();
   }, []);
 
-  const onNext = type => {
+  const onNext = devEui => {
     Animated.timing(anim.current, {
       toValue: 0,
       duration: 500,
       easing: Easing.elastic(0.8),
       useNativeDriver: true,
     }).start(() => {
-      onChoose && onChoose(type);
+      onChoose && onChoose(devEui);
       onClose && onClose();
     });
   };
@@ -94,76 +114,114 @@ const NodePopupContent = props => {
             marginBottom: 16,
           }}>
           <TouchableOpacity
-            onPress={() => onNext(DeviceState.ACTIVE)}
+            onPress={() => onNext((projectNodes.LEFT || {}).devEui)}
             style={{
               width: 128,
               height: 128,
               borderRadius: 20,
-              backgroundColor: colors.green,
+              backgroundColor: getDeviceColor((projectNodes.LEFT || {}).status),
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: 16,
             }}>
-            <MyIcon name="router" size={20} light color="white" />
+            <MyIcon
+              name={getDeviceStateIcon((projectNodes.LEFT || {}).status)}
+              size={20}
+              light
+              color="white"
+            />
             <Text style={{...fonts.type.bold(18, 'white'), marginVertical: 5}}>
               Left
             </Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Bay 1</Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Level 2</Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Bay {location.bay}
+            </Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Level {location.level}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => onNext(DeviceState.PAUSE)}
+            onPress={() => onNext((projectNodes.RIGHT || {}).devEui)}
             style={{
               width: 128,
               height: 128,
               borderRadius: 20,
-              backgroundColor: colors.darkgrey,
+              backgroundColor: getDeviceColor(
+                (projectNodes.RIGHT || {}).status,
+              ),
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <MyIcon name="pause-circle" size={20} light color="white" />
+            <MyIcon
+              name={getDeviceStateIcon((projectNodes.RIGHT || {}).status)}
+              size={20}
+              light
+              color="white"
+            />
             <Text style={{...fonts.type.bold(18, 'white'), marginVertical: 5}}>
               Right
             </Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Bay 1</Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Level 2</Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Bay {location.bay}
+            </Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Level {location.level}
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
           <TouchableOpacity
-            onPress={() => onNext(DeviceState.ALERT)}
+            onPress={() => onNext((projectNodes.BACK || {}).devEui)}
             style={{
               width: 128,
               height: 128,
               borderRadius: 20,
-              backgroundColor: colors.red,
+              backgroundColor: getDeviceColor((projectNodes.BACK || {}).status),
               alignItems: 'center',
               justifyContent: 'center',
               marginRight: 16,
             }}>
-            <MyIcon name="bell" size={20} light color="white" />
+            <MyIcon
+              name={getDeviceStateIcon((projectNodes.BACK || {}).status)}
+              size={20}
+              light
+              color="white"
+            />
             <Text style={{...fonts.type.bold(18, 'white'), marginVertical: 5}}>
               Back
             </Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Bay 1</Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Level 2</Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Bay {location.bay}
+            </Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Level {location.level}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => onNext(DeviceState.CHECK)}
+            onPress={() => onNext((projectNodes.WALL || {}).devEui)}
             style={{
               width: 128,
               height: 128,
               borderRadius: 20,
-              backgroundColor: colors.yellow,
+              backgroundColor: getDeviceColor((projectNodes.WALL || {}).status),
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <MyIcon name="router" size={20} light color="white" />
+            <MyIcon
+              name={getDeviceStateIcon((projectNodes.WALL || {}).status)}
+              size={20}
+              light
+              color="white"
+            />
             <Text style={{...fonts.type.bold(18, 'white'), marginVertical: 5}}>
               Wall
             </Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Bay 1</Text>
-            <Text style={{...fonts.type.base(14, 'white')}}>Level 2</Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Bay {location.bay}
+            </Text>
+            <Text style={{...fonts.type.base(14, 'white')}}>
+              Level {location.level}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

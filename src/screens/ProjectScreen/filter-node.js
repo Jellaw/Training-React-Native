@@ -11,9 +11,10 @@ import RootSiblings from 'react-native-root-siblings';
 import colors from '~/assets/colors';
 import fonts from '~/assets/fonts';
 import MyIcon from '~/components/MyIcon';
+import {NODE_STATUS} from '~/constants/masterData';
 
 const FilterNode = props => {
-  const {visible, onClose, onConfirm, selectedType} = props;
+  const {visible, onClose, onConfirm, selectedType, reset} = props;
 
   const sibling = React.useRef(null);
 
@@ -27,6 +28,7 @@ const FilterNode = props => {
     sibling.current = new RootSiblings(
       (
         <FilterNodePopup
+          reset={reset}
           selectedType={selectedType}
           onClose={() => {
             sibling.current?.destroy();
@@ -47,7 +49,7 @@ const FilterNode = props => {
 };
 
 const FilterNodePopup = props => {
-  const {onClose, onConfirm, selectedType} = props;
+  const {onClose, onConfirm, selectedType, reset} = props;
 
   const popupHeight = React.useRef(Dimensions.get('window').height);
   const anim = React.useRef(new Animated.Value(0));
@@ -92,6 +94,18 @@ const FilterNodePopup = props => {
     });
   };
 
+  const onReset = () => {
+    Animated.timing(anim.current, {
+      toValue: 0,
+      duration: 500,
+      easing: Easing.elastic(0.8),
+      useNativeDriver: true,
+    }).start(() => {
+      reset && reset();
+      onClose && onClose();
+    });
+  };
+
   const renderItem = (icon, title, type) => {
     return (
       <TouchableOpacity
@@ -128,15 +142,17 @@ const FilterNodePopup = props => {
             marginTop: 20,
           }}>
           <Text style={{...fonts.type.bold(17)}}>Filters</Text>
-          <TouchableOpacity style={{position: 'absolute', right: 16}}>
+          <TouchableOpacity
+            onPress={onReset}
+            style={{position: 'absolute', right: 16}}>
             <Text style={{...fonts.type.bold(14, colors.grey)}}>Reset</Text>
           </TouchableOpacity>
         </View>
         <View style={{paddingHorizontal: 10, marginBottom: 20}}>
-          {renderItem('router', 'Active', 0)}
-          {renderItem('bell', 'Alert', 1)}
-          {renderItem('router', 'Check', 2)}
-          {renderItem('pause-circle', 'Pause', 3)}
+          {renderItem('router', 'Active', NODE_STATUS.ACTIVE)}
+          {renderItem('bell', 'Alert', NODE_STATUS.ALERT)}
+          {renderItem('router', 'Check', NODE_STATUS.CHECK)}
+          {renderItem('pause-circle', 'Pause', NODE_STATUS.PAUSE)}
         </View>
         <TouchableOpacity
           style={{

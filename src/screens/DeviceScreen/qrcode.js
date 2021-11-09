@@ -16,9 +16,11 @@ import images from '~/assets/images';
 import {RNCamera} from 'react-native-camera';
 import {getCheckNode} from '~/store/node/actions';
 import {isEmpty} from '~/helpers/validate';
+import {isDevEui} from '~/helpers/common';
 
 function QrCode({navigation}) {
   const [loading, setLoading] = useState(false);
+  const [devEui, setDevEui] = useState(false);
 
   const anim = useRef(new Animated.Value(0)).current;
   const rotate = anim.interpolate({
@@ -54,7 +56,8 @@ function QrCode({navigation}) {
     };
 
     const onBarCodeScanned = async result => {
-      if (result.data) {
+      if (isDevEui(result.data)) {
+        setDevEui(false);
         setLoading(true);
         const check = await getCheckNode({devEui: result.data});
         if (!isEmpty(check)) {
@@ -71,60 +74,62 @@ function QrCode({navigation}) {
           devEui: result.data,
         });
         return setLoading(false);
+      } else {
+        setDevEui(result.data);
       }
     };
     return (
-      <View
-        style={{
-          alignSelf: 'stretch',
-          padding: 15,
-          borderRadius: 10,
-          marginTop: 60,
-        }}>
+      <>
         <View
           style={{
-            width: '100%',
-            aspectRatio: 1,
+            alignSelf: 'stretch',
+            padding: 15,
             borderRadius: 10,
-            overflow: 'hidden',
+            marginTop: 60,
           }}>
-          {loading ? (
-            <View
-              style={{
-                backgroundColor: colors.mediumgrey,
-                aspectRatio: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Animated.View style={{transform: [{rotate: rotate}]}}>
-                <MyIcon name="sync-alt" size={70} color="black" light />
-              </Animated.View>
-              <Text style={{...fonts.type.medium(16), marginTop: 20}}>
-                Please wait…
-              </Text>
-            </View>
-          ) : (
-            <>
-              <RNCamera
-                onBarCodeRead={onBarCodeScanned}
-                captureAudio={false}
-                style={{flex: 1}}
-              />
-              {/* <Text
-                  style={{
-                    ...fonts.type.base(14, colors.red),
-                    position: 'absolute',
-                    bottom: 20,
-                    left: 0,
-                    right: 0,
-                    textAlign: 'center',
-                  }}>
-                  Scan New Device
-                </Text> */}
-            </>
-          )}
+          <View
+            style={{
+              width: '100%',
+              aspectRatio: 1,
+              borderRadius: 10,
+              overflow: 'hidden',
+            }}>
+            {loading ? (
+              <View
+                style={{
+                  backgroundColor: colors.mediumgrey,
+                  aspectRatio: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Animated.View style={{transform: [{rotate: rotate}]}}>
+                  <MyIcon name="sync-alt" size={70} color="black" light />
+                </Animated.View>
+                <Text style={{...fonts.type.medium(16), marginTop: 20}}>
+                  Please wait…
+                </Text>
+              </View>
+            ) : (
+              <>
+                <RNCamera
+                  onBarCodeRead={onBarCodeScanned}
+                  captureAudio={false}
+                  style={{flex: 1}}
+                />
+              </>
+            )}
+          </View>
         </View>
-      </View>
+        {devEui && (
+          <Text
+            style={{
+              ...fonts.type.base(18, colors.red),
+              textAlign: 'center',
+            }}>
+            {devEui} is not Device
+          </Text>
+        )}
+      </>
     );
   };
 
