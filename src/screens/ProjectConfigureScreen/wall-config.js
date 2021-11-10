@@ -73,7 +73,12 @@ function WallConfig({navigation, route}) {
     });
     return arr;
   };
-
+  const onBuilding = () => {
+    navigation.navigate(routes.PROJECT_BUILDING_CONFIG, {
+      buildingId: route.params.buildingId,
+      projectId: route.params.projectId,
+    });
+  };
   const renderLevelItem = (item, index) => {
     const count = data => {
       let countNode = 0;
@@ -87,6 +92,7 @@ function WallConfig({navigation, route}) {
         onPress={() =>
           navigation.navigate(routes.PROJECT_LEVEL_CONFIG, {
             arrLevel: {children: arrLevelName()},
+            buildingId: route.params.buildingId,
             levelId: item.id,
             projectId: projectId,
           })
@@ -146,19 +152,21 @@ function WallConfig({navigation, route}) {
   const renderContent = () => {
     return (
       <View style={{flex: 1}}>
-        {/* <View style={{flexDirection: 'row'}}>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Project /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_BUILDING_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Building /{' '}
-          </Text>
-          <Text style={{...fonts.type.medium(14, colors.grey)}}>Wall / {data.name}</Text>
-        </View> */}
+        {
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Project /{' '}
+            </Text>
+            <Text
+              onPress={onBuilding}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Building /{' '}
+            </Text>
+            <Text style={{...fonts.type.medium(14, colors.grey)}}>Wall /</Text>
+          </View>
+        }
         <View
           style={{
             flexDirection: 'row',

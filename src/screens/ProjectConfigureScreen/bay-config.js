@@ -114,6 +114,13 @@ function BayConfig({navigation, route}) {
     setVisibleSide(true);
   };
 
+  const onBuilding = () => {
+    navigation.navigate(routes.PROJECT_BUILDING_CONFIG, {
+      buildingId: route.params.buildingId,
+      projectId: route.params.projectId,
+    });
+  };
+
   const openScan = async (side, name) => {
     if (isEmpty(side)) {
       const dataCreate = await dispatch(
@@ -300,29 +307,31 @@ function BayConfig({navigation, route}) {
   const renderContent = () => {
     return (
       <View style={{flex: 1}}>
-        {/* <View style={{flexDirection: 'row'}}>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Project /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_BUILDING_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Building /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_WALL_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Wall /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_LEVEL_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Level /{' '}
-          </Text>
-          <Text style={{...fonts.type.medium(14, colors.grey)}}>Bay / {data.name}</Text>
-        </View> */}
+        {
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Project /{' '}
+            </Text>
+            <Text
+              onPress={onBuilding}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Building /{' '}
+            </Text>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_WALL_CONFIG)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Wall /{' '}
+            </Text>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_LEVEL_CONFIG)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Level /{' '}
+            </Text>
+            <Text style={{...fonts.type.medium(14, colors.grey)}}>Bay /</Text>
+          </View>
+        }
         <View
           style={{
             flexDirection: 'row',

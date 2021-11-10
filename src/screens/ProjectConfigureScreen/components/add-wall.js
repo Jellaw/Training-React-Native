@@ -7,6 +7,7 @@ import {
   Dimensions,
   Easing,
   Text,
+  BackHandler,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -43,6 +44,17 @@ const AddWall = props => {
   React.useEffect(() => {
     if (visible) {
       onCreate();
+
+      const backAction = () => {
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backAction,
+      );
+
+      return () => backHandler.remove();
     }
   }, [visible]);
 

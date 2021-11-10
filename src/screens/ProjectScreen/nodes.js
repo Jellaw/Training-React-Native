@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import colors from '~/assets/colors';
@@ -37,6 +37,38 @@ function BuildingNodes(props) {
   const [currentSearch, setCurrentSearch] = useState('');
   const [visible, setVisible] = useState(false);
   const [dataSearch, setDataSearch] = useState('');
+  const redData = [];
+  const orangeData = [];
+  const greenData = [];
+  const grayData = [];
+  const resultData = [];
+
+  useEffect(() => {
+    sortData();
+  }, []);
+
+  const sortData = () => {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].status == NODE_STATUS.ACTIVE) {
+        greenData.push(data[i]);
+      }
+      if (data[i].status == NODE_STATUS.ALERT) redData.push(data[i]);
+      if (data[i].status == NODE_STATUS.PAUSE) grayData.push(data[i]);
+      if (data[i].status == NODE_STATUS.CHECK) orangeData.push(data[i]);
+    }
+    for (let j = 0; j < redData.length; j++) {
+      resultData.push(redData[j]);
+    }
+    for (let j = 0; j < orangeData.length; j++) {
+      resultData.push(orangeData[j]);
+    }
+    for (let j = 0; j < grayData.length; j++) {
+      resultData.push(grayData[j]);
+    }
+    for (let j = 0; j < greenData.length; j++) {
+      resultData.push(greenData[j]);
+    }
+  };
 
   const onChooseFilter = type => {
     setCurrentFilter(type);
@@ -135,7 +167,7 @@ function BuildingNodes(props) {
     return (
       <FlatList
         contentContainerStyle={{paddingVertical: 16}}
-        data={dataSearch || data}
+        data={dataSearch || resultData}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />

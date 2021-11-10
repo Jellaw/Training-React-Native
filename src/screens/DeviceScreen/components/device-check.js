@@ -1,5 +1,12 @@
 import React from 'react';
-import {Animated, Easing, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Animated,
+  Easing,
+  Text,
+  TouchableOpacity,
+  View,
+  BackHandler,
+} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import RootSiblings from 'react-native-root-siblings';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -33,6 +40,17 @@ const DeviceCheck = props => {
   React.useEffect(() => {
     if (visible) {
       onCreate();
+
+      const backAction = () => {
+        return true;
+      };
+
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backAction,
+      );
+
+      return () => backHandler.remove();
     }
   }, [visible]);
 

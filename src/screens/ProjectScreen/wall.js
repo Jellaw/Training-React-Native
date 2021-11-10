@@ -28,6 +28,11 @@ const dot = (color, size = 6, border = 2) => {
 
 const shortBay = item => {
   const arr = [];
+  const redData = [];
+  const orangeData = [];
+  const greenData = [];
+  const grayData = [];
+  const resultData = [];
   (item.children || []).map(level =>
     (level.children || []).map(bay => {
       (bay.children || []).filter(node =>
@@ -50,7 +55,27 @@ const shortBay = item => {
       );
     }),
   );
-  return arr;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].status == NODE_STATUS.ACTIVE) {
+      greenData.push(arr[i]);
+    }
+    if (arr[i].status == NODE_STATUS.ALERT) redData.push(arr[i]);
+    if (arr[i].status == NODE_STATUS.PAUSE) grayData.push(arr[i]);
+    if (arr[i].status == NODE_STATUS.CHECK) orangeData.push(arr[i]);
+  }
+  for (let j = 0; j < redData.length; j++) {
+    resultData.push(redData[j]);
+  }
+  for (let j = 0; j < orangeData.length; j++) {
+    resultData.push(orangeData[j]);
+  }
+  for (let j = 0; j < grayData.length; j++) {
+    resultData.push(grayData[j]);
+  }
+  for (let j = 0; j < greenData.length; j++) {
+    resultData.push(greenData[j]);
+  }
+  return resultData;
 };
 
 function WallItem(props) {

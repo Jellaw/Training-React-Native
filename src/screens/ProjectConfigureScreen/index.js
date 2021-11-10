@@ -86,6 +86,7 @@ function ProjectConfigScreen({navigation}) {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate(routes.PROJECT_WALL_CONFIG, {
+            buildingId: dataWall.id,
             arrWall: {children: arrWallName()},
             wallId: item.id,
             projectId: obj.id,
@@ -166,7 +167,7 @@ function ProjectConfigScreen({navigation}) {
   const renderContent = () => {
     return (
       <View style={{flex: 1}}>
-        {/* <Text style={{...fonts.type.medium(14, colors.grey)}}>{obj.name}</Text> */}
+        {<Text style={{...fonts.type.medium(14, colors.grey)}}>Project /</Text>}
         <View
           style={{
             flexDirection: 'row',

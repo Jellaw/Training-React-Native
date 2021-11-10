@@ -73,6 +73,12 @@ function LevelConfig({navigation, route}) {
     });
     return arr;
   };
+  const onBuilding = () => {
+    navigation.navigate(routes.PROJECT_BUILDING_CONFIG, {
+      buildingId: route.params.buildingId,
+      projectId: route.params.projectId,
+    });
+  };
 
   const renderBayItem = (item, index) => {
     return (
@@ -82,6 +88,7 @@ function LevelConfig({navigation, route}) {
             arrBay: {children: arrBayName()},
             bayId: item.id,
             projectId: projectId,
+            buildingId: route.params.buildingId,
             numberOfBays: (data.props || {}).numberOfBays,
           })
         }
@@ -133,24 +140,26 @@ function LevelConfig({navigation, route}) {
   const renderContent = () => {
     return (
       <View style={{flex: 1}}>
-        {/* <View style={{flexDirection: 'row'}}>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Project /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_BUILDING_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Building /{' '}
-          </Text>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_WALL_CONFIG)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Wall /{' '}
-          </Text>
-          <Text style={{...fonts.type.medium(14, colors.grey)}}>Level / {data.name}</Text>
-        </View> */}
+        {
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Project /{' '}
+            </Text>
+            <Text
+              onPress={onBuilding}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Building /{' '}
+            </Text>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_WALL_CONFIG)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Wall /{' '}
+            </Text>
+            <Text style={{...fonts.type.medium(14, colors.grey)}}>Level /</Text>
+          </View>
+        }
         <View
           style={{
             flexDirection: 'row',

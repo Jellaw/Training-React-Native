@@ -157,16 +157,18 @@ function BuildingConfig({navigation, route}) {
   const renderContent = () => {
     return (
       <View style={{flex: 1}}>
-        {/* <View style={{flexDirection: 'row'}}>
-          <Text
-            onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
-            style={{...fonts.type.medium(14, colors.purple)}}>
-            Project /{' '}
-          </Text>
-          <Text style={{...fonts.type.medium(14, colors.grey)}}>
-            Building / {data.name}
-          </Text>
-        </View> */}
+        {
+          <View style={{flexDirection: 'row'}}>
+            <Text
+              onPress={() => navigation.navigate(routes.PROJECT_CONFIG_ROOT)}
+              style={{...fonts.type.medium(14, colors.purple)}}>
+              Project /{' '}
+            </Text>
+            <Text style={{...fonts.type.medium(14, colors.grey)}}>
+              Building /
+            </Text>
+          </View>
+        }
         <View
           style={{
             flexDirection: 'row',

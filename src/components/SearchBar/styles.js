@@ -4,7 +4,7 @@ import PlatformStyleSheet from '~/helpers/PlatformStyleSheet';
 export default PlatformStyleSheet.create({
   inputSearch: {
     backgroundColor: colors.white,
-    paddingVertical: 8,
+    paddingVertical: 0,
     borderWidth: 2,
     height: 56,
     borderRadius: 14,
